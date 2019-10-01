@@ -1,17 +1,19 @@
 
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form [formGroup]="formSignUp">
+        <form [formGroup]="formSignUp" (ngSubmit)="signUp(formSignUp)">
             <img src="../../assets/images/piopiologo.png">
-            
+
             <h1>Create your account</h1>
-            <input type="text" formControlName='userName' placeholder="Username" />
+            <input type="text" formControlName='username' placeholder="Username" />
             <input type="email" formControlName='email' placeholder="Email" />
             <input type="password" formControlName='password' placeholder="Password" />
-            <input type="password" formControlName='rePassword' placeholder="Repeat your password" />
-            <input type="text" formControlName='name' placeholder="Name" />
-            <input type="text" formControlName='surname' placeholder="Surname" />
-            <button [disabled]="!formSignUp.valid" (click)="signUp()" >Sign Up</button>
+            <input type="password" formControlName='confirm_password' placeholder="Repeat your password" />
+            <div formGroupName="profile">
+              <input type="text" formControlName='first_name' placeholder="Name" />
+              <input type="text" formControlName='last_name' placeholder="Surname" />
+            </div>
+            <button [disabled]="formSignUp.invalid" >Sign Up</button>
         </form>
     </div>
 </div>
