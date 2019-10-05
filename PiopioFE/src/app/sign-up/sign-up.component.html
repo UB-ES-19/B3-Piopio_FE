@@ -58,7 +58,9 @@
                 <small *ngIf="formSignUp.get('profile.last_name').hasError('maxlength')">Max of 20 characters</small>
               </div>
             </div>
-            <button [disabled]="formSignUp.invalid" >Sign Up</button>
+            <button [disabled]="formSignUp.invalid" type="button" class="btn btn-danger">
+              Sign Up
+            </button>
         </form>
     </div>
 </div>

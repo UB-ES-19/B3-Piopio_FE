@@ -9,6 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+// Bootstrap modules (https://valor-software.com/ngx-bootstrap)
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    ButtonsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
