@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms';
-
-import { AuthService } from '../services/auth.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class SignUpComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
-  formSignUp: FormGroup;
+  registerForm: FormGroup;
 
   constructor(private authService: AuthService, private fb: FormBuilder) { }
 
@@ -19,7 +18,7 @@ export class SignUpComponent implements OnInit {
   }
 
   createForm() {
-    this.formSignUp = this.fb.group({
+    this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -32,12 +31,12 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp(user: FormGroup): void {
-    this.authService.signUp(user.value).subscribe(
-    response => console.log(response),
-    error => {
+    this.authService.register(user.value).subscribe(
+      response => console.log(response),
+      error => {
         console.log(error.error);
         Object.keys(error.error).forEach(prop => {
-          const formControl = this.formSignUp.get(prop);
+          const formControl = this.registerForm.get(prop);
           if (formControl) {
             formControl.setErrors({
               serverError: error.error[prop]

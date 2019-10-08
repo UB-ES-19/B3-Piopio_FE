@@ -1,5 +1,1 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-
-* {
-    font-family: 'Montserrat', sans-serif;
-}
+@import url(assets/css/shards.min.css);
