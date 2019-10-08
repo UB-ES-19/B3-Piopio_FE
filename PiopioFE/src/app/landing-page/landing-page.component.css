@@ -1,0 +1,66 @@
+.left-side, .right-side {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.left-side {
+    background: #e74c3c;
+}
+
+.left-side p {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 15px;
+}
+
+.right-side {
+    background: white;
+}
+
+.right-side p {
+    font-weight: bold;
+}
+
+h1 {
+    padding: 30px 30%;
+    font-weight: bold;
+}
+
+.signupButton {
+    background-color:#e74d3c;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+	font-weight:bold;
+	padding:13px 178px;
+    text-decoration:none;
+    margin-bottom: 15px;
+}
+
+.signupButton:hover {
+	background-color:#bd4237;
+}
+
+.loginButton {
+    background-color:#ffffff;
+    border: 2px solid #e74d3c;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#e74d3c;
+	font-size:15px;
+	font-weight:bold;
+	padding:13px 180px;
+	text-decoration:none;
+}
+
+.loginButton:hover {
+	background-color:#ebebeb;
+}
