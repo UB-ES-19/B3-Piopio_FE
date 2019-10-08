@@ -11,13 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Bootstrap modules (https://valor-software.com/ngx-bootstrap)
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SignUpComponent
+    SignUpComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
