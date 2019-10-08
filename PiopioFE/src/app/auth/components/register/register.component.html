@@ -1,0 +1,66 @@
+
+<div class="container" id="container">
+  <div class="form-container">
+    <form [formGroup]="registerForm" (ngSubmit)="signUp(registerForm)">
+      <img src="/assets/images/piopiologo.png">
+
+      <h1>Create your account</h1>
+
+      <input type="text" formControlName='username' placeholder="Username" />
+      <div *ngIf="registerForm.get('username').errors && registerForm.get('username').touched">
+        <small *ngIf="registerForm.get('username').hasError('required')">Username is required</small>
+        <small *ngIf="registerForm.get('username').hasError('minlength')">Min of 3 characters</small>
+        <small *ngIf="registerForm.get('username').hasError('maxlength')">Max of 15 characters</small>
+      </div>
+      <div *ngIf="registerForm.get('username').errors?.serverError">
+        <ul style="color: #E74C3C; text-align: left;">
+          <li style="list-style-type: none; " *ngFor="let error of registerForm.get('username').errors?.serverError">{{ error[0].toUpperCase() + error.slice(1) }}</li>
+        </ul>
+      </div>
+
+      <input type="email" formControlName='email' placeholder="Email" />
+      <div *ngIf="registerForm.get('email').errors && registerForm.get('email').touched">
+        <small *ngIf="registerForm.get('email').hasError('required')">Email is required</small>
+        <small *ngIf="registerForm.get('email').hasError('email')">Incorrect email</small>
+      </div>
+      <div *ngIf="registerForm.get('email').errors?.serverError">
+        <ul style="color: #E74C3C; text-align: left;">
+          <li style="list-style-type: none;" *ngFor="let error of registerForm.get('email').errors?.serverError">{{ error[0].toUpperCase() + error.slice(1) }}</li>
+        </ul>
+      </div>
+
+      <input type="password" formControlName='password' placeholder="Password" />
+      <div *ngIf="registerForm.get('password').errors && registerForm.get('password').touched">
+        <small *ngIf="registerForm.get('password').hasError('required')">Password is required</small>
+        <small *ngIf="registerForm.get('password').hasError('minlength')">Min of 8 characters</small>
+      </div>
+      <div *ngIf="registerForm.get('password').errors?.serverError">
+        <ul style="color: #E74C3C; text-align: left;">
+          <li style="list-style-type: none;" *ngFor="let error of registerForm.get('password').errors?.serverError">{{ error }}</li>
+        </ul>
+      </div>
+
+      <input type="password" formControlName='confirm_password' placeholder="Repeat your password" />
+      <div *ngIf="registerForm.get('confirm_password').errors?.serverError">
+        <span *ngFor="let error of registerForm.get('confirm_password').errors?.serverError">{{ error }}</span>
+      </div>
+      <div style="width: 100%;" formGroupName="profile">
+        <input type="text" formControlName='first_name' placeholder="Name" />
+        <div *ngIf="registerForm.get('profile.first_name').errors && registerForm.get('profile.first_name').touched">
+          <small *ngIf="registerForm.get('profile.first_name').hasError('required')">First name is required</small>
+          <small *ngIf="registerForm.get('profile.first_name').hasError('minlength')">Min of 3 characters</small>
+          <small *ngIf="registerForm.get('profile.first_name').hasError('maxlength')">Max of 20 characters</small>
+        </div>
+        <input type="text" formControlName='last_name' placeholder="Surname" />
+        <div *ngIf="registerForm.get('profile.last_name').errors && registerForm.get('profile.last_name').touched">
+          <small *ngIf="registerForm.get('profile.last_name').hasError('required')">Last name is required</small>
+          <small *ngIf="registerForm.get('profile.last_name').hasError('minlength')">Min of 3 characters</small>
+          <small *ngIf="registerForm.get('profile.last_name').hasError('maxlength')">Max of 20 characters</small>
+        </div>
+      </div>
+      <button [disabled]="registerForm.invalid" type="button" class="btn btn-danger">
+        Sign Up
+      </button>
+    </form>
+  </div>
+</div>

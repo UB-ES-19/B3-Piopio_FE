@@ -1,21 +1,10 @@
-.left-side, .right-side {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .left-side {
     background: #e74c3c;
 }
 
-.left-side p {
+.left-side *{
     color: white;
     font-weight: bold;
-    font-size: 20px;
-    margin: 15px;
 }
 
 .right-side {
@@ -31,34 +20,34 @@ h1 {
     font-weight: bold;
 }
 
-.signupButton {
+.registerButton {
     background-color:#e74d3c;
-	border-radius:42px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:15px;
-	font-weight:bold;
-	padding:13px 178px;
+    border-radius:42px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:15px;
+    font-weight:bold;
+    padding:13px 178px;
     text-decoration:none;
     margin-bottom: 15px;
 }
 
-.signupButton:hover {
+.registerButton:hover {
 	background-color:#bd4237;
 }
 
 .loginButton {
     background-color:#ffffff;
     border: 2px solid #e74d3c;
-	border-radius:42px;
-	display:inline-block;
-	cursor:pointer;
-	color:#e74d3c;
-	font-size:15px;
-	font-weight:bold;
-	padding:13px 180px;
-	text-decoration:none;
+    border-radius:42px;
+    display:inline-block;
+    cursor:pointer;
+    color:#e74d3c;
+    font-size:15px;
+    font-weight:bold;
+    padding:13px 180px;
+    text-decoration:none;
 }
 
 .loginButton:hover {

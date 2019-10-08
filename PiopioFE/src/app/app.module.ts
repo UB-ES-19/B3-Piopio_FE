@@ -4,21 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
+import {AuthModule} from './auth/auth.module';
+import {LandingPageComponent} from './landing-page/landing-page.component';
+
 
 // Bootstrap modules (https://valor-software.com/ngx-bootstrap)
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SignUpComponent,
     LandingPageComponent
   ],
   imports: [
@@ -26,6 +26,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AuthModule,
     ButtonsModule.forRoot()
   ],
   providers: [],
