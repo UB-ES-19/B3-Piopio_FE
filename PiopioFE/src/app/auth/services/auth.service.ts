@@ -38,6 +38,9 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    if (this.getRefreshToken() && this.jwtHelper.isTokenExpired(this.getRefreshToken())) {
+      this.logout();
+    }
     return !!this.getJwtToken();
   }
 
@@ -61,6 +64,15 @@ export class AuthService {
     this.storeTokens(jwt);
   }
 
+  logout() {
+    this.doLogoutUser();
+  }
+
+  private doLogoutUser() {
+    this.loggedUser = null;
+    this.removeTokens();
+  }
+
   private getRefreshToken() {
     return localStorage.getItem('REFRESH_TOKEN');
   }
@@ -72,6 +84,11 @@ export class AuthService {
   private storeTokens(jwt: JWT) {
     localStorage.setItem('ACCESS_TOKEN', jwt.access);
     localStorage.setItem('REFRESH_TOKEN', jwt.refresh);
+  }
+
+  private removeTokens() {
+    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('REFRESH_TOKEN');
   }
 
 }
