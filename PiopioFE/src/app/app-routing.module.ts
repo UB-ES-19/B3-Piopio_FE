@@ -6,10 +6,14 @@ import {AnonUsersGuard} from './auth/guards/anonusers.guard';
 import {RegisterComponent} from './auth/components/register/register.component';
 import {AuthUsersGuard} from './auth/guards/authusers.guard';
 import {LandingPageComponent} from './landing-page/landing-page.component';
+import { HomeComponent } from './home/home.component';
+import { PublishPostComponent } from './publish-post/publish-post.component';
 
 
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, canActivate: [AnonUsersGuard]},
+  { path: 'publishprueba', component: PublishPostComponent, canActivate: [AnonUsersGuard]},
   { path: 'login', component: LoginComponent, canActivate: [AnonUsersGuard]},
   { path: 'register', component: RegisterComponent , canActivate: [AnonUsersGuard]},
   { path: '', component: LandingPageComponent, canActivate: [AnonUsersGuard]},

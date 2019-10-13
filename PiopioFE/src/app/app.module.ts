@@ -13,13 +13,17 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
 
 // Bootstrap modules (https://valor-software.com/ngx-bootstrap)
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { HomeComponent } from './home/home.component';
+import { PublishPostComponent } from './publish-post/publish-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    HomeComponent,
+    PublishPostComponent
   ],
   imports: [
     BrowserModule,
