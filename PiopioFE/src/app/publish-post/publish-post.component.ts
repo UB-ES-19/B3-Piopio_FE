@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-publish-post',
@@ -8,20 +9,25 @@ import { ApiService } from '../services/api.service';
 })
 export class PublishPostComponent implements OnInit {
 
-  public tweet:any;
+  postForm: FormGroup;
 
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService: ApiService,  private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.postForm = this.formBuilder.group({
+      content: ['', [Validators.required]],
+    });
   }
 
-
-
-  postTweet(){
-    this.tweet = document.getElementById("tweet").value;
-    this.apiService.createPost(this.tweet);
-    document.getElementById("tweet").value = '';
-  
+  publish(post: FormGroup) {
+    this.apiService.createPost(post.value).subscribe(
+      value => {
+        this.postForm.reset();
+        console.log(value);
+      },
+      error => {
+        console.log(error);
+      });
   }
 
 

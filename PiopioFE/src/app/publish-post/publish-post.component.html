@@ -1,35 +1,14 @@
-<div class="post-box">
-    <div class="row top-row post-row">
-        <div class="col-md-3 column">
-           
-                <img src="../../assets/images/noProfilePicture.png" >
-          
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="postForm" (ngSubmit)="publish(postForm)">
+      <div class="form-group">
+        <textarea class="form-control" formControlName='content' rows="3" placeholder="What are you thinking?"></textarea>
+      </div>
+      <div class="btn-toolbar justify-content-between">
+        <div class="btn-group">
+          <button type="submit" [disabled]="postForm.invalid" class="btn btn-primary">Publish</button>
         </div>
-            
-        <div class="col-md-9 column">
-            <textarea name="textarea" id="tweet" class="post-text" placeholder="Write something here"></textarea>
-            
-        
-        </div>
-    </div>
-
-    <div class="row bottom-row post-row">
-        <div class="col-md-9 column">
-            
-        </div>
-
-        <div class="col-md-3 column">
-            
-          
-             <button  style="display: inline;margin-top: 10px" (click)="postTweet()"> Post</button>   
-         
-        </div>
-
-
-
-    </div>
-
-
-
-
+      </div>
+    </form>
+  </div>
 </div>
