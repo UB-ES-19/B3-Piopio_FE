@@ -16,7 +16,12 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   createPost(tweet:any){
-    return this.httpClient.post<any>(this.postsEndPoint,tweet,{headers : this.httpHeaders});
+   
+    const post = new FormData();
+    post.append('content',tweet);
+
+
+    return this.httpClient.post<any>(this.postsEndPoint,post,{headers : this.httpHeaders});
 
   }
 
