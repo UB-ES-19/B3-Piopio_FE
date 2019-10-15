@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         if (success) {
           console.log(success);
           console.log(this.authService.getJwtToken());
-          // this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         }
       });
   }
