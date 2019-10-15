@@ -59,6 +59,10 @@ export class AuthService {
     return localStorage.getItem('ACCESS_TOKEN');
   }
 
+  getLoggedUser() {
+    return this.loggedUser;
+  }
+
   private doLoginUser(username: string, jwt: JWT) {
     this.loggedUser = username;
     this.storeTokens(jwt);
