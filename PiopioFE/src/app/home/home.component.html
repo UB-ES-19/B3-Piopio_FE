@@ -1,15 +1,15 @@
 <div class="container-fluid">
-  <div class="row vh-100">
+  <div class="row">
     <div class="col-md-2 p-0" style="background-color: #e74c3c;">
       <h3>side</h3>
     </div>
 
     <div class="col-md-8 ">
-      <div class="row post" style="background-color: #ffffff">
-        <app-publish-post></app-publish-post>
+      <div class="row" style="background-color: #ffffff">
+        <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
       </div>
-      <div class="row tweets-list" style="background-color: #ffffff">
-        <h3>mid</h3>
+      <div class="row" style="background-color: #ffffff">
+        <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
       </div>
     </div>
 

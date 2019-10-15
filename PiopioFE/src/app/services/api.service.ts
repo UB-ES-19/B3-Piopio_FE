@@ -13,4 +13,8 @@ export class ApiService {
   createPost(post: any) {
     return this.httpClient.post<any>(this.postsEndPoint, post, {headers : this.httpHeaders});
   }
+
+  getMyPosts(limit: number, offset: number) {
+    return this.httpClient.get<any>(`${this.postsEndPoint}me/?limit=${limit}&offset=${offset}`, {headers : this.httpHeaders});
+  }
 }
