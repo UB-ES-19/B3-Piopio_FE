@@ -17,7 +17,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Bootstrap modules (https://valor-software.com/ngx-bootstrap)
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     ReactiveFormsModule,
     HttpClientModule,
     AuthModule,
+    BrowserAnimationsModule,
     ButtonsModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
     InfiniteScrollModule
   ],
   providers: [],

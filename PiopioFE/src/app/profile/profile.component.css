@@ -13,7 +13,7 @@
 }
 
 .user-card-banner-image {
-    background-image: url('../../assets/images/harold-usr-img.jpg');
+    background-image: url('//placehold.it/200');
     background-size: cover;
     background-repeat: no-repeat;
     height: 80%;
@@ -22,7 +22,7 @@
 .tweets-list{
     height: 70%;
     border: 1px solid grey;
-    
+
 }
 app-publish-post{
     height: 100%;

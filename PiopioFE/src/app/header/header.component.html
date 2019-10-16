@@ -1,5 +1,27 @@
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="/assets/images/piopiologo.png" width="30" height="30" alt="">
-  </a>
+<nav class="navbar navbar-expand-sm navbar-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home">
+      <img src="/assets/images/piopiologo.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" [collapse]="isCollapsed" [isAnimated]="true">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+        <span dropdown>
+          <a href id="basic-link" dropdownToggle (click)="false"
+             aria-controls="basic-link-dropdown">Profile</a>
+          <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="basic-link">
+            <li>
+              <a class="dropdown-item" routerLink="/profile">Profile</a>
+              <a class="dropdown-item" (click)="doLogout()">Logout</a>
+            </li>
+          </ul>
+        </span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
