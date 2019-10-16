@@ -1,0 +1,30 @@
+.side{
+    height: 100vh;
+    width: 100vw;
+}
+
+.post{
+    height: 30%;
+}
+
+.user-card {
+    height: 40vh;
+    width: 100%;
+}
+
+.user-card-banner-image {
+    background-image: url('//placehold.it/200');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 80%;
+}
+
+.tweets-list{
+    height: 70%;
+    border: 1px solid grey;
+
+}
+app-publish-post{
+    height: 100%;
+    width: 100%;
+}

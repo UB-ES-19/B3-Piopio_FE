@@ -1,0 +1,18 @@
+.side{
+    height: 100vh;
+    width: 100vw;
+}
+
+.post{
+    height: 30%;
+}
+
+.tweets-list{
+    height: 70%;
+    border: 1px solid grey;
+    
+}
+app-publish-post{
+    height: 100%;
+    width: 100%;
+}
