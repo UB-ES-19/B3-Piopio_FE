@@ -24,7 +24,25 @@
     border: 1px solid grey;
 
 }
+
+.profile-picture{
+    margin-top: -50px;
+    margin-left: 2%;
+}
+
 app-publish-post{
     height: 100%;
     width: 100%;
+}
+
+.user-image{
+    margin-bottom: 10px;
+}
+
+.row{
+    margin-bottom: 75px;
+}
+
+.list-left-side{
+    margin: 15%;
 }
