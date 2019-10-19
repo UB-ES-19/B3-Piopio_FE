@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md-2 p-0">
             <div class="list-left-side">
-               <ul>
+               <ul style="list-style-type: none">
                 <li>
-                    <a [routerLink]="['/home']"><h3>
+                    <a routerLink="/home"><h3>
                         Home
                     </h3></a>
                 </li>
-            </ul> 
+            </ul>
             </div>
-            
+
 
         </div>
 
@@ -22,14 +22,10 @@
                     <div class="user-card-second-row">
                         <div class="user-image">
                             <img style="display: inline" src="../../assets/images/noProfilePicture.png" class = "profile-picture" height="100px" width="100px" alt=""><br>
-                            <button style="float:right" type="button" class="btn btn-secondary">Secondary</button><br>
-                            <h3 style="display: inline;margin-left: 2%">{{userProfile.profile.first_name}} {{userProfile.profile.last_name}}}</h3><br>
-                            <h5 style="display: inline;margin-left: 2%">{{userProfile.username}}</h5>
-                            
-                        </div>
+                            <button style="float:right" type="button" class="btn btn-secondary">Edit profile</button><br>
+                            <h3 style="display: inline;margin-left: 2%" *ngIf="userProfile != null">{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</h3><br>
+                            <h5 style="display: inline;margin-left: 2% " *ngIf="userProfile != null">{{ userProfile.username }}</h5>
 
-                        <div class="user-edit-profile">
-                            <h3>{{ loggedUserName }}</h3>
                         </div>
                     </div>
                 </div>

@@ -8,27 +8,21 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public userProfile:any;
 
+  userProfile: object;
   loggedUserName: string;
 
-  constructor(private authService: AuthService,private apiService: ApiService) { }
+  constructor(private authService: AuthService, private apiService: ApiService) { }
 
   ngOnInit() {
     this.loggedUserName = this.authService.getLoggedUser();
 
     this.apiService.getMyProfile().subscribe(
-      value =>{
+      value => {
+        console.log(value);
         this.userProfile = value;
-      },error=>{
+      }, error => {
         console.log(error);
       });
-
-  
-
-
   }
-
-
-
 }
