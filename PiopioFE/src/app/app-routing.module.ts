@@ -13,10 +13,10 @@ import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // (Solo pruebas) Para ver /home hay que cambiar AuthUsersGuard por AnonUsersGuard
-  { path: 'home', component: HomeComponent, canActivate: [AuthUsersGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AnonUsersGuard]},//cambiar a AuthUsersGuard
   { path: 'login', component: LoginComponent, canActivate: [AnonUsersGuard]},
   { path: 'register', component: RegisterComponent , canActivate: [AnonUsersGuard]},
-  { path: 'profile', component: ProfileComponent , canActivate: [AuthUsersGuard]},
+  { path: 'profile', component: ProfileComponent , canActivate: [AnonUsersGuard]},//cambiar a AuthUsersGuard
   { path: '', component: LandingPageComponent, canActivate: [AnonUsersGuard]},
 
 ];
