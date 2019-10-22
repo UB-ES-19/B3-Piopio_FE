@@ -1,46 +1,62 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2 p-0">
-            <div class="list-left-side">
-               <ul style="list-style-type: none">
-                <li>
-                    <a routerLink="/home"><h3>
-                        Home
-                    </h3></a>
-                </li>
-            </ul>
-            </div>
+<body>
+    <div class="coverImageHolder" style="background-image: url('../../assets/images/harold.jpg'); background-position: 0px; background-repeat: no-repeat; background-size: cover;">
+    </div>
+    <div class="userOptionsBar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="userImage" style="background-image: url('../../assets/images/noProfilePicture.png'); background-size: cover;"></div>
+                </div>
+                <div class="col-md-7">
+                    <div class="statsHolder">
+                        <span class="statAmount">10</span>
+                        <span class="statText">Followers</span>
 
+                        <div class="vhr"></div>
+                        <span class="statAmount">5</span>
+                        <span class="statText">Following</span>
 
-        </div>
+                        <div class="vhr"></div>
+                        <span class="statAmount">100</span>
+                        <span class="statText">Posts</span>
 
-        <div class="col-md-8 ">
-            <div class="row" style="background-color: #ffffff">
-                <div class="user-card">
-                    <div class="user-card-banner-image">
+                        <div class="vhr"></div>
+
+                        <button style="float:right" type="button" class="btn btn-secondary">Edit profile</button>
                     </div>
-                    <div class="user-card-second-row">
-                        <div class="user-image">
-                            <img style="display: inline" src="../../assets/images/noProfilePicture.png" class = "profile-picture" height="100px" width="100px" alt=""><br>
-                            <button style="float:right" type="button" class="btn btn-secondary">Edit profile</button><br>
-                            <h3 style="display: inline;margin-left: 2%" *ngIf="userProfile != null">{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</h3><br>
-                            <h5 style="display: inline;margin-left: 2% " *ngIf="userProfile != null">{{ userProfile.username }}</h5>
+                </div>
+                <div class="col-md-2">
 
-                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 *ngIf="userProfile != null">{{ userProfile.username }}</h4>
+                        <h4 *ngIf="userProfile == null">Username</h4>
+                        <hr>
+                        <b *ngIf="userProfile != null">{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</b>
+                        <b *ngIf="userProfile == null">Name Surname</b>
+                        <br>
+                        User's info here
                     </div>
                 </div>
             </div>
-            <div class="row" style="background-color: #ffffff">
-                <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
+            <div class="col-md-8">
+                <div class="card">
+                    <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
+                </div>
+                <div class="card">
+                    <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
+                </div>
             </div>
-            <div class="row" style="background-color: #ffffff">
-                <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
-            </div>
-
-        </div>
-
-        <div class="col-md-2 p-0" >
-
         </div>
     </div>
-</div>
+</body>
