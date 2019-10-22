@@ -10,12 +10,10 @@ import { ApiService } from '../services/api.service';
 export class ProfileComponent implements OnInit {
 
   userProfile: object;
-  loggedUserName: string;
 
   constructor(private authService: AuthService, private apiService: ApiService) { }
 
   ngOnInit() {
-    this.loggedUserName = this.authService.getLoggedUser();
 
     this.apiService.getMyProfile().subscribe(
       value => {
