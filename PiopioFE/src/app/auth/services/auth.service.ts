@@ -13,7 +13,6 @@ export class AuthService {
   private usersEndPoint = 'http://localhost:8000/api/users/';
   private tokensEndPoint = 'http://localhost:8000/api/token/';
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-  private loggedUser: string;
   private jwtHelper = new JwtHelperService();
 
   constructor(private httpClient: HttpClient) { }
@@ -27,14 +26,7 @@ export class AuthService {
   }
 
   login(user: { username: string, password: string }): Observable<boolean> {
-    return this.httpClient.post<any>(this.tokensEndPoint, user, { headers : this.httpHeaders })
-      .pipe(
-        tap(jwt => this.doLoginUser(user.username, jwt)),
-        mapTo(true),
-        catchError(error => {
-          alert(error.error);
-          return of(false);
-        }));
+    return this.httpClient.post<any>(this.tokensEndPoint, user, { headers : this.httpHeaders });
   }
 
   isLoggedIn() {
@@ -59,12 +51,7 @@ export class AuthService {
     return localStorage.getItem('ACCESS_TOKEN');
   }
 
-  getLoggedUser() {
-    return this.loggedUser;
-  }
-
-  private doLoginUser(username: string, jwt: JWT) {
-    this.loggedUser = username;
+  private doLoginUser(jwt: JWT) {
     this.storeTokens(jwt);
   }
 
@@ -73,7 +60,6 @@ export class AuthService {
   }
 
   private doLogoutUser() {
-    this.loggedUser = null;
     this.removeTokens();
   }
 
@@ -85,7 +71,7 @@ export class AuthService {
     localStorage.setItem('ACCESS_TOKEN', jwt);
   }
 
-  private storeTokens(jwt: JWT) {
+  storeTokens(jwt: JWT) {
     localStorage.setItem('ACCESS_TOKEN', jwt.access);
     localStorage.setItem('REFRESH_TOKEN', jwt.refresh);
   }

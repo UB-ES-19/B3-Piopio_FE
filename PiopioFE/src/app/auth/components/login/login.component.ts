@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  error: string;
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -23,13 +24,16 @@ export class LoginComponent implements OnInit {
 
   login(user: FormGroup) {
     this.authService.login(user.value)
-      .subscribe(success => {
-        if (success) {
-          console.log(success);
-          console.log(this.authService.getJwtToken());
-          this.router.navigate(['/home']);
+      .subscribe(
+        success => {
+          if (success) {
+            this.authService.storeTokens(success);
+            this.router.navigate(['/home']);
+          }
+        }, error => {
+          this.error = error.error.detail;
         }
-      });
+      );
   }
 
 }
