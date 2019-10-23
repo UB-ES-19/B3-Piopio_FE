@@ -51,10 +51,6 @@ export class AuthService {
     return localStorage.getItem('ACCESS_TOKEN');
   }
 
-  private doLoginUser(jwt: JWT) {
-    this.storeTokens(jwt);
-  }
-
   logout() {
     this.doLogoutUser();
   }
@@ -71,7 +67,7 @@ export class AuthService {
     localStorage.setItem('ACCESS_TOKEN', jwt);
   }
 
-  storeTokens(jwt: JWT) {
+  storeTokens(jwt: any) {
     localStorage.setItem('ACCESS_TOKEN', jwt.access);
     localStorage.setItem('REFRESH_TOKEN', jwt.refresh);
   }
