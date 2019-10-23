@@ -5,7 +5,7 @@
       <img src="/assets/images/piopiologo.png">
 
       <h1>Log in to your account</h1>
-
+      <small style="color: red" *ngIf="error">{{error}}</small>
       <input type="text" formControlName='username' placeholder="Username" />
 
       <input type="password" formControlName='password' placeholder="Password" />

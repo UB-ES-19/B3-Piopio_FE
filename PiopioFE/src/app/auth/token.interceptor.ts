@@ -16,16 +16,18 @@ export class TokenInterceptor implements HttpInterceptor {
 
     if (this.authService.getJwtToken()) {
       request = this.addToken(request, this.authService.getJwtToken());
-    }
 
-    // @ts-ignore
-    return next.handle(request).pipe(catchError(error => {
-      if (error instanceof HttpErrorResponse && error.status === 401) {
-        return this.handle401Error(request, next);
-      } else {
-        return throwError(error);
-      }
-    }));
+      // @ts-ignore
+      return next.handle(request).pipe(catchError(error => {
+        if (error instanceof HttpErrorResponse && error.status === 401) {
+          return this.handle401Error(request, next, error);
+        } else {
+          return throwError(error);
+        }
+      }));
+    } else {
+      return next.handle(request);
+    }
   }
 
   private addToken(request: HttpRequest<any>, token: string) {
@@ -36,7 +38,7 @@ export class TokenInterceptor implements HttpInterceptor {
     });
   }
 
-  private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+  private handle401Error(request: HttpRequest<any>, next: HttpHandler, error) {
     if (!this.isRefreshing) {
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
