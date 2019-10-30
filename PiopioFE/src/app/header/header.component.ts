@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth/services/auth.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +7,8 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  isCollapsed = true;
-
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  doLogout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
   }
 }

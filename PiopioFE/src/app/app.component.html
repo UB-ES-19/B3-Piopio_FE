@@ -1,5 +1,8 @@
 <app-header *ngIf="router.url != '/login' && router.url != '/register' && router.url != '/'"></app-header>
-<router-outlet></router-outlet>
+<app-header-mobile *ngIf="router.url != '/login' && router.url != '/register' && router.url != '/'"></app-header-mobile>
+<div [ngClass]="(router.url != '/') ? 'view-wrapper':'landing-wrapper'">
+  <router-outlet (activate)="loadJS()"></router-outlet>
+</div>
 <app-footer *ngIf="router.url != '/login' && router.url != '/register' && router.url != '/'"></app-footer>
 
 
