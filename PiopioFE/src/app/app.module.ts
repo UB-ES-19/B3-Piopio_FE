@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AccountDropdownComponent } from './header/account-dropdown/account-dropdown.component';
 import { HeaderMobileComponent } from './header-mobile/header-mobile.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HeaderMobileComponent } from './header-mobile/header-mobile.component';
     ListPostsComponent,
     ProfileComponent,
     AccountDropdownComponent,
-    HeaderMobileComponent
+    HeaderMobileComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,

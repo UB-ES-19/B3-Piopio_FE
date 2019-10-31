@@ -6,28 +6,22 @@
 
   <div class="nav-drop is-account-dropdown">
     <div class="inner">
-      <div class="nav-drop-header">
-        <span class="username">{{ username }}</span>
-        <a routerLink="/profile">Profile</a>
-      </div>
+<!--      <div class="nav-drop-header">-->
+<!--        <span class="username">{{ username }}</span>-->
+<!--        <a >Profile</a>-->
+<!--      </div>-->
       <div class="nav-drop-body account-items">
-        <a id="profile-link" href="#" class="account-item">
+        <a class="account-item" routerLink="/profile">
           <div class="media">
-            <div class="media-left">
-              <div class="image">
-                <img  src="https://via.placeholder.com/400x400" data-demo-src="assets/images/avatars/jenna.png" alt="">
-              </div>
+            <div class="icon-wrap">
+              <i data-feather="user"></i>
             </div>
             <div class="media-content">
-              <h3>{{ username }}</h3>
-              <small>Main account</small>
-            </div>
-            <div class="media-right">
-              <i data-feather="check"></i>
+              <h3>Profile</h3>
+              <small>Access your profile.</small>
             </div>
           </div>
         </a>
-        <hr class="account-divider">
         <a class="account-item">
           <div class="media">
             <div class="icon-wrap">

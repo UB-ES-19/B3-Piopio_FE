@@ -64,9 +64,9 @@
             <span>3.4K</span>
             <span>Friends</span>
           </div>
-          <div class="subheader-middle">
-            <h2>Jenna Davis</h2>
-            <span>Media Influencer</span>
+          <div class="subheader-middle" *ngIf="userProfile">
+            <h2>{{ userProfile.username }}</h2>
+            <span>{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</span>
           </div>
           <div class="subheader-end is-hidden-mobile">
 
