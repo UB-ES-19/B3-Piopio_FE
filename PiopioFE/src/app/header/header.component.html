@@ -1,7 +1,7 @@
 <div id="main-navbar" class="navbar is-inline-flex is-transparent no-shadow is-hidden-mobile">
   <div class="container is-fluid">
     <div class="navbar-brand">
-      <a href="/" class="navbar-item">
+      <a routerLink="/home" class="navbar-item">
         <img src="assets/images/piopiologo.png" width="112" height="28" alt="">
       </a>
     </div>
@@ -27,8 +27,8 @@
 
         <div class="navbar-item">
           <div id="global-search" class="control">
-            <input id="tipue_drop_input" class="input is-rounded" type="text" placeholder="Search" required>
-            <span id="clear-search" class="reset-search">
+            <input id="tipue_drop_input" class="input is-rounded" type="text" placeholder="Search" required (input)="onSearchChange($event.target.value)">
+            <span id="clear-search" class="reset-search" (click)="onSearchChange('')">
                 <i data-feather="x"></i>
             </span>
             <span class="search-icon">

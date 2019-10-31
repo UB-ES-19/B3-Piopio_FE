@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, RoutesRecognized} from '@angular/router';
+import { filter, pairwise } from 'rxjs/operators';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private location: Location ) { }
+
+  prevUrl: string;
 
   ngOnInit() {
   }
+
+  onSearchChange(searchValue: string): void {
+    if (!this.location.path().includes('search')) {
+      this.prevUrl = this.location.path();
+    }
+    console.log(this.prevUrl);
+    if (searchValue.length) {
+      this.router.navigate(['/search'], { queryParams: {username: searchValue} });
+    } else {
+      if (this.prevUrl){
+        this.router.navigate([this.prevUrl]);
+      }
+    }
+  }
+
 }
