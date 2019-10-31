@@ -8,6 +8,7 @@ import {AuthUsersGuard} from './auth/guards/authusers.guard';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import {SearchResultComponent} from './search-result/search-result.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AnonUsersGuard]},
   { path: 'register', component: RegisterComponent , canActivate: [AnonUsersGuard]},
   { path: 'profile', component: ProfileComponent , canActivate: [AuthUsersGuard]},
+  { path: 'search', component: SearchResultComponent , canActivate: [AuthUsersGuard]},
   { path: '', component: LandingPageComponent, canActivate: [AnonUsersGuard]},
 
 ];

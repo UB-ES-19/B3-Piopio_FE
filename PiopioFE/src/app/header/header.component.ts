@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth/services/auth.service';
-import {Router} from '@angular/router';
+import {Router, RoutesRecognized} from '@angular/router';
+import { filter, pairwise } from 'rxjs/operators';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +10,25 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  isCollapsed = true;
+  constructor(private router: Router, private location: Location ) { }
 
-  constructor(private authService: AuthService, private router: Router) { }
+  prevUrl: string;
 
   ngOnInit() {
   }
 
-  doLogout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+  onSearchChange(searchValue: string): void {
+    if (!this.location.path().includes('search')) {
+      this.prevUrl = this.location.path();
+    }
+    console.log(this.prevUrl);
+    if (searchValue.length) {
+      this.router.navigate(['/search'], { queryParams: {username: searchValue} });
+    } else {
+      if (this.prevUrl){
+        this.router.navigate([this.prevUrl]);
+      }
+    }
   }
+
 }

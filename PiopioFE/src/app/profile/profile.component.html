@@ -1,62 +1,136 @@
-<body>
-    <div class="coverImageHolder" style="background-image: url('../../assets/images/harold.jpg'); background-position: 0px; background-repeat: no-repeat; background-size: cover;">
-    </div>
-    <div class="userOptionsBar">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="userImage" style="background-image: url('../../assets/images/noProfilePicture.png'); background-size: cover;"></div>
-                </div>
-                <div class="col-md-7">
-                    <div class="statsHolder">
-                        <span class="statAmount">10</span>
-                        <span class="statText">Followers</span>
+<!-- Container -->
+<div class="container is-custom">
 
-                        <div class="vhr"></div>
-                        <span class="statAmount">5</span>
-                        <span class="statText">Following</span>
+  <!-- Profile page main wrapper -->
+  <div id="profile-main" class="view-wrap is-headless true-dom" >
+    <div class="columns is-multiline no-margin">
+      <!-- Left side column -->
+      <div class="column is-paddingless">
 
-                        <div class="vhr"></div>
-                        <span class="statAmount">100</span>
-                        <span class="statText">Posts</span>
-
-                        <div class="vhr"></div>
-
-                        <button style="float:right" type="button" class="btn btn-secondary">Edit profile</button>
-                    </div>
-                </div>
-                <div class="col-md-2">
-
-                </div>
+        <!-- Timeline Header -->
+        <div class="cover-bg">
+          <img class="cover-image" src="https://via.placeholder.com/1600x460" data-demo-src="assets/images/demo/bg/4.png" alt="">
+          <div class="avatar">
+            <img id="user-avatar" class="avatar-image" src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/jenna.png" alt="">
+            <div class="avatar-button">
+              <i data-feather="plus"></i>
             </div>
+            <div class="pop-button is-far-left has-tooltip modal-trigger" data-modal="change-profile-pic-modal" data-placement="right" data-title="Change profile picture">
+              <a class="inner">
+                <i data-feather="camera"></i>
+              </a>
+            </div>
+            <div id="follow-pop" class="pop-button pop-shift is-left has-tooltip" data-placement="top" data-title="Subscription">
+              <a class="inner">
+                <i class="inactive-icon" data-feather="bell"></i>
+                <i class="active-icon" data-feather="bell-off"></i>
+              </a>
+            </div>
+            <div id="invite-pop" class="pop-button pop-shift is-center has-tooltip" data-placement="top" data-title="Relationship">
+              <a href="#" class="inner">
+                <i class="inactive-icon" data-feather="plus"></i>
+                <i class="active-icon" data-feather="minus"></i>
+              </a>
+            </div>
+            <div id="chat-pop" class="pop-button is-right has-tooltip" data-placement="top" data-title="Chat">
+              <a class="inner">
+                <i data-feather="message-circle"></i>
+              </a>
+            </div>
+            <div class="pop-button is-far-right has-tooltip" data-placement="right" data-title="Send message">
+              <a href="messages-inbox.html" class="inner">
+                <i data-feather="mail"></i>
+              </a>
+            </div>
+          </div>
+          <div class="cover-overlay"></div>
+          <div class="cover-edit modal-trigger" data-modal="change-cover-modal">
+            <i class="mdi mdi-camera"></i>
+            <span>Edit cover image</span>
+          </div>
+
         </div>
-    </div>
 
-    <div class="spacer"></div>
+        <div class="profile-menu is-hidden-mobile">
+          <div class="menu-start">
+            <a href="profile-main.html" class="button has-min-width">Timeline</a>
+            <a href="profile-about.html" class="button has-min-width">About</a>
+          </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 *ngIf="userProfile != null">{{ userProfile.username }}</h4>
-                        <h4 *ngIf="userProfile == null">Username</h4>
-                        <hr>
-                        <b *ngIf="userProfile != null">{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</b>
-                        <b *ngIf="userProfile == null">Name Surname</b>
-                        <br>
-                        User's info here
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card">
-                    <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
-                </div>
-                <div class="card">
-                    <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
-                </div>
-            </div>
         </div>
+
+        <div class="profile-subheader">
+          <div class="subheader-start is-hidden-mobile">
+            <span>3.4K</span>
+            <span>Friends</span>
+          </div>
+          <div class="subheader-middle" *ngIf="userProfile">
+            <h2>{{ userProfile.username }}</h2>
+            <span>{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</span>
+          </div>
+          <div class="subheader-end is-hidden-mobile">
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
-</body>
+
+    <div class="columns">
+      <div id="profile-timeline-widgets" class="column is-4">
+
+        <div class="basic-infos-wrapper">
+          <div class="card is-profile-info">
+            <div class="info-row">
+              <div>
+                <span>Studied at</span>
+                <a class="is-inverted">Georgetown University</a>
+              </div>
+              <i class="mdi mdi-school"></i>
+            </div>
+            <div class="info-row">
+              <div>
+                <span>Married to</span>
+                <a class="is-inverted">Dan Walker</a>
+              </div>
+              <i class="mdi mdi-heart"></i>
+            </div>
+            <div class="info-row">
+              <div>
+                <span>From</span>
+                <a class="is-inverted">Melbourne, AU</a>
+              </div>
+              <i class="mdi mdi-earth"></i>
+            </div>
+            <div class="info-row">
+              <div>
+                <span>Lives in</span>
+                <a class="is-inverted">Los Angeles, CA</a>
+              </div>
+              <i class="mdi mdi-map-marker"></i>
+            </div>
+            <div class="info-row">
+              <div>
+                <span>Followers</span>
+                <a class="is-muted">258 followers</a>
+              </div>
+              <i class="mdi mdi-bell-ring"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="column is-8">
+        <div id="activity-feed" class="mt-10">
+          <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
+          <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Profile page main wrapper -->
+
+</div>
+<!-- /Container -->
