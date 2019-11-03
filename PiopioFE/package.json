@@ -24,6 +24,7 @@
     "feather-icons": "^4.24.0",
     "jquery": "^3.4.1",
     "ngx-infinite-scroll": "^8.0.0",
+    "ngx-dropzone": "2.1.2",
     "package.json": "^2.0.1",
     "rxjs": "^6.4.0",
     "tslib": "^1.10.0",
