@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import { ApiService } from '../services/api.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ListPostsComponent} from '../list-posts/list-posts.component';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-publish-post',
@@ -13,6 +14,7 @@ export class PublishPostComponent implements OnInit {
   postForm: FormGroup;
   @Input()
   listPostRef: ListPostsComponent;
+  files: File[] = [];
 
   constructor(private apiService: ApiService,  private formBuilder: FormBuilder) { }
 
@@ -33,5 +35,21 @@ export class PublishPostComponent implements OnInit {
       });
   }
 
+  onSelect(event) {
+    this.files.push(...event.addedFiles);
+  }
 
+  onRemove(event) {
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  toggleImagesUpload() {
+    $('.images-upload-modal').toggleClass('is-active');
+    console.log('images');
+  }
+
+  toggleVideoUpload() {
+    $('.video-upload-modal').toggleClass('is-active');
+    console.log('video');
+  }
 }

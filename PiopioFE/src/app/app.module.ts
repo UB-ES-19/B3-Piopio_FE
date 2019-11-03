@@ -17,6 +17,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AccountDropdownComponent } from './header/account-dropdown/account-dropdown.component';
 import { HeaderMobileComponent } from './header-mobile/header-mobile.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import {NgxDropzoneModule} from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SearchResultComponent } from './search-result/search-result.component';
     ReactiveFormsModule,
     HttpClientModule,
     AuthModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxDropzoneModule
   ],
   providers: [],
   bootstrap: [AppComponent]
