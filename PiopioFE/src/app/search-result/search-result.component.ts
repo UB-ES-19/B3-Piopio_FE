@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {ApiService} from '../services/api.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-search-result',
@@ -9,12 +11,24 @@ import {ActivatedRoute} from '@angular/router';
 export class SearchResultComponent implements OnInit {
 
   querySearch: string;
+  users = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
+      this.users = []
       this.querySearch = this.route.snapshot.queryParamMap.get('username');
+    });
+
+    this.apiService.getUsers().subscribe(
+      value => {
+        console.log(value);
+        value.results.forEach(element => {
+          if (element.username == this.querySearch) this.users = this.users.concat(element);
+        });
+      }, error => {
+        console.log(error);
     });
   }
 }

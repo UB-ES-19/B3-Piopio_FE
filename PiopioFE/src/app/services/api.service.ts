@@ -23,5 +23,7 @@ export class ApiService {
     return this.httpClient.get<any>(`${this.usersEndPoint}me`,{headers : this.httpHeaders});
   }
 
-
+  getUsers(){
+    return this.httpClient.get<any>(this.usersEndPoint,{headers : this.httpHeaders})
+  }
 }
