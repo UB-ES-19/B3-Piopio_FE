@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/services/auth.service';
 import { ApiService } from '../services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { FnParam } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,7 @@ export class ProfileComponent implements OnInit {
 
   userProfile: object;
   username: string;
+  isFollowing: boolean;
 
   constructor(private authService: AuthService, private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
@@ -40,4 +42,26 @@ export class ProfileComponent implements OnInit {
         console.log(error);
       });
   }
+
+  follow(username: string) {
+    this.apiService.followUser(username).subscribe(
+      value => {
+        
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
+  unfollow(username: string){
+    this.apiService.unfollowUser(username).subscribe(
+      value => {
+
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
 }
+
+
