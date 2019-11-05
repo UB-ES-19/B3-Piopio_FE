@@ -19,11 +19,15 @@ export class ApiService {
     return this.httpClient.get<any>(`${this.postsEndPoint}me/?limit=${limit}&offset=${offset}`, {headers : this.httpHeaders});
   }
 
-  getMyProfile(){
-    return this.httpClient.get<any>(`${this.usersEndPoint}me`,{headers : this.httpHeaders});
+  getMyProfile() {
+    return this.httpClient.get<any>(`${this.usersEndPoint}me`, {headers : this.httpHeaders});
   }
 
-  getUsers(){
-    return this.httpClient.get<any>(this.usersEndPoint,{headers : this.httpHeaders})
+  getProfile(username: string) {
+    return this.httpClient.get<any>(`${this.usersEndPoint}${username}`, {headers : this.httpHeaders});
+  }
+
+  searchUser(username: string) {
+    return this.httpClient.get<any>(`${this.usersEndPoint}search/?username=${username}`, {headers : this.httpHeaders});
   }
 }

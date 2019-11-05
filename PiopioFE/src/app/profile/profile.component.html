@@ -52,17 +52,19 @@
         </div>
 
         <div class="profile-menu is-hidden-mobile">
-          <div class="menu-start">
-            <a href="profile-main.html" class="button has-min-width">Timeline</a>
+          <div class="menu-start"  *ngIf="userProfile">
+            <a href="profile-friends.html" class="button has-min-width">Followers {{ userProfile.follower_count }}</a>
+            <a href="profile-photos.html" class="button has-min-width">Following {{ userProfile.following_count }}</a>
+          </div>
+          <div class="menu-end" *ngIf="userProfile">
+            <a href="profile-main.html" class="button has-min-width">Follow</a>
             <a href="profile-about.html" class="button has-min-width">About</a>
           </div>
-
         </div>
 
         <div class="profile-subheader">
           <div class="subheader-start is-hidden-mobile">
-            <span>3.4K</span>
-            <span>Friends</span>
+
           </div>
           <div class="subheader-middle" *ngIf="userProfile">
             <h2>{{ userProfile.username }}</h2>

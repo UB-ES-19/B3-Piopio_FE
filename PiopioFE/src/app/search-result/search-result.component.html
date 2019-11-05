@@ -7,6 +7,7 @@
     </h3>
 
     <div class="card-row">
+      <h3 *ngIf="users.length==0">No results</h3>
       <div *ngFor="let user of users" class="card-flex friend-card">
         <div class="img-container">
           <img class="avatar" src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/dan.jpg"
@@ -14,26 +15,26 @@
           <img class="country" src="" alt="">
         </div>
         <div class="friend-info">
-          <h3><a href="#">{{ user.profile.first_name }} {{ user.profile.last_name }}</a></h3>
-          <p>asdasd</p>
+          <h3><a (click)="goToProfile(user.username)">{{ user.username }}</a></h3>
+          <p>{{ user.profile.first_name }} {{ user.profile.last_name }}</p>
         </div>
         <div class="friend-stats">
           <div class="stat-block">
-            <label>Friends</label>
-            <div class="stat-number">
-              478
-            </div>
-          </div>
-          <div class="stat-block">
             <label>Posts</label>
             <div class="stat-number">
-              293
+              ?
             </div>
           </div>
           <div class="stat-block">
-            <label>Likes</label>
+            <label>Followers</label>
             <div class="stat-number">
-              899
+              {{ user.follower_count }}
+            </div>
+          </div>
+          <div class="stat-block">
+            <label>Following</label>
+            <div class="stat-number">
+              {{ user.following_count }}
             </div>
           </div>
         </div>
