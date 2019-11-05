@@ -13,21 +13,24 @@ export class ProfileComponent implements OnInit {
 
   userProfile: object;
   username: string;
-  isFollowing: boolean;
+  isFollowing: boolean = false;
+  userId: number;
 
   constructor(private authService: AuthService, private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-
     this.apiService.getMyProfile().subscribe(
       value => {
         this.username = this.route.snapshot.paramMap.get('username');
+        this.userId = value.id;
         console.log(this.username);
         if (this.username && value.username === this.username) {
           this.router.navigate(['profile']);
         } else if (this.username) {
-          this.apiService.getProfile(this.username).subscribe(other => {
-            this.userProfile = other;
+          this.apiService.getProfile(this.username).subscribe(
+            other => {
+              this.userProfile = other;
+              if (other.followings.indexOf(this.userId) != -1) this.isFollowing == true;
           }, error => {
             console.log(error);
             // User not found
@@ -46,7 +49,7 @@ export class ProfileComponent implements OnInit {
   follow(username: string) {
     this.apiService.followUser(username).subscribe(
       value => {
-        
+        if (value.username == "Correct") this.isFollowing == true;
       }, error => {
         console.log(error);
       }
@@ -56,7 +59,7 @@ export class ProfileComponent implements OnInit {
   unfollow(username: string){
     this.apiService.unfollowUser(username).subscribe(
       value => {
-
+        if (value.username == "Correct") this.isFollowing == false;
       }, error => {
         console.log(error);
       }
