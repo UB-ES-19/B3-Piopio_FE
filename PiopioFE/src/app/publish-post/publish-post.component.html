@@ -43,9 +43,9 @@
       <div class="modal images-upload-modal">
         <div class="modal-background"></div>
         <div class="modal-content">
-          <ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
+          <ngx-dropzone (change)="onSelectImages($event)" [accept]="'image/*'">
             <ngx-dropzone-label>Drop a image!</ngx-dropzone-label>
-            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="f" *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="f" *ngFor="let f of images" [removable]="true" (removed)="onRemoveImages(f)">
               <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-image-preview>
           </ngx-dropzone>
@@ -57,9 +57,9 @@
       <div class="modal video-upload-modal">
         <div class="modal-background"></div>
         <div class="modal-content">
-          <ngx-dropzone (change)="onSelect($event)" [accept]="'video/*'" [multiple]="false">
+          <ngx-dropzone (change)="onSelectVideo($event)" [accept]="'video/*'" [multiple]="false">
             <ngx-dropzone-label>Drop a video!</ngx-dropzone-label>
-            <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" [file]="f" *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" [file]="f" *ngFor="let f of videos" [removable]="true" (removed)="onRemoveVideo(f)">
               <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-video-preview>
           </ngx-dropzone>

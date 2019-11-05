@@ -14,7 +14,8 @@ export class PublishPostComponent implements OnInit {
   postForm: FormGroup;
   @Input()
   listPostRef: ListPostsComponent;
-  files: File[] = [];
+  images: File[] = [];
+  videos: File[] = [];
 
   constructor(private apiService: ApiService,  private formBuilder: FormBuilder) { }
 
@@ -35,21 +36,29 @@ export class PublishPostComponent implements OnInit {
       });
   }
 
-  onSelect(event) {
-    this.files.push(...event.addedFiles);
+  onSelectImages(event) {
+    if (this.images.length < 4) {
+      this.images.push(...event.addedFiles);
+    }
   }
 
-  onRemove(event) {
-    this.files.splice(this.files.indexOf(event), 1);
+  onRemoveImages(event) {
+    this.images.splice(this.images.indexOf(event), 1);
+  }
+
+  onSelectVideo(event) {
+    this.videos.push(...event.addedFiles);
+  }
+
+  onRemoveVideo(event) {
+    this.videos.splice(this.videos.indexOf(event), 1);
   }
 
   toggleImagesUpload() {
     $('.images-upload-modal').toggleClass('is-active');
-    console.log('images');
   }
 
   toggleVideoUpload() {
     $('.video-upload-modal').toggleClass('is-active');
-    console.log('video');
   }
 }

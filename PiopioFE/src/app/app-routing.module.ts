@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent , canActivate: [AnonUsersGuard]},
   { path: 'profile', component: ProfileComponent , canActivate: [AuthUsersGuard]},
   { path: 'search', component: SearchResultComponent , canActivate: [AuthUsersGuard]},
+  { path: ':username', component: ProfileComponent, canActivate: [AuthUsersGuard]},
   { path: '', component: LandingPageComponent, canActivate: [AnonUsersGuard]},
-
 ];
 
 @NgModule({

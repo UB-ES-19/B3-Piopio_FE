@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     if (searchValue.length) {
       this.router.navigate(['/search'], { queryParams: {username: searchValue} });
     } else {
-      if (this.prevUrl){
+      if (this.prevUrl) {
         this.router.navigate([this.prevUrl]);
       }
     }
