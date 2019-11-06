@@ -48,17 +48,17 @@
             <i class="mdi mdi-camera"></i>
             <span>Edit cover image</span>
           </div>
-
         </div>
 
         <div class="profile-menu is-hidden-mobile">
           <div class="menu-start"  *ngIf="userProfile">
-            <a href="profile-friends.html" class="button has-min-width">Followers {{ userProfile.follower_count }}</a>
-            <a href="profile-photos.html" class="button has-min-width">Following {{ userProfile.following_count }}</a>
+            <a hred="#" class="button has-min-width">Followers {{ userProfile.follower_count }}</a>
+            <a href="#" class="button has-min-width">Following {{ userProfile.following_count }}</a>
           </div>
           <div class="menu-end" *ngIf="userProfile">
-            <a href="profile-main.html" class="button has-min-width">Follow</a>
-            <a href="profile-about.html" class="button has-min-width">About</a>
+            <a *ngIf="!isFollowing" (click)="follow(userProfile.username)" class="button has-min-width">Follow</a>
+            <a *ngIf="isFollowing" (click)="unfollow(userProfile.username)" class="button has-min-width">Unfollow</a>
+            <a href="#" class="button has-min-width">About</a>
           </div>
         </div>
 
