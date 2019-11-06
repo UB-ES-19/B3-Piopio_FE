@@ -32,10 +32,10 @@ export class ApiService {
   }
 
   followUser(username: string) {
-    return this.httpClient.post<any>(`${this.usersEndPoint}/follow/`, {headers : this.httpHeaders, params: {"username": username}});
+    return this.httpClient.post<any>(`${this.usersEndPoint}follow/`, {"username": username},{headers : this.httpHeaders});
   }
 
   unfollowUser(username: string) {
-    return this.httpClient.post<any>(`${this.usersEndPoint}/unfollow/`, {headers : this.httpHeaders, params: {"username": username}});
+    return this.httpClient.post<any>(`${this.usersEndPoint}unfollow/`, {"username": username},{headers : this.httpHeaders});
   }
 }

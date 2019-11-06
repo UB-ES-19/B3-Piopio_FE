@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
   userProfile: object;
   username: string;
-  isFollowing: boolean = false;
+  isFollowing = false;
   userId: number;
 
   constructor(private authService: AuthService, private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
@@ -30,7 +30,8 @@ export class ProfileComponent implements OnInit {
           this.apiService.getProfile(this.username).subscribe(
             other => {
               this.userProfile = other;
-              if (other.followings.indexOf(this.userId) != -1) this.isFollowing == true;
+              console.log(this.userProfile)
+              if (other.followings.includes(this.userId)) { this.isFollowing = true; }
           }, error => {
             console.log(error);
             // User not found
@@ -49,7 +50,7 @@ export class ProfileComponent implements OnInit {
   follow(username: string) {
     this.apiService.followUser(username).subscribe(
       value => {
-        if (value.username == "Correct") this.isFollowing == true;
+        if (value.username === 'Correct') { this.isFollowing = true; }
       }, error => {
         console.log(error);
       }
@@ -59,7 +60,7 @@ export class ProfileComponent implements OnInit {
   unfollow(username: string){
     this.apiService.unfollowUser(username).subscribe(
       value => {
-        if (value.username == "Correct") this.isFollowing == false;
+        if (value.username === 'Correct') { this.isFollowing = false; }
       }, error => {
         console.log(error);
       }
