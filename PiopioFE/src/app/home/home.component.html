@@ -1,20 +1,161 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2 p-0">
+<div id="main-feed" class="container">
 
-    </div>
+  <!-- Content placeholders at page load -->
+  <!-- /html/includes/global/placeload/feed-page/feed-menu-shadow-dom.html -->
 
-    <div class="col-md-8 ">
-      <div class="row" style="background-color: #ffffff">
+  <!-- Feed page main wrapper -->
+  <div id="activity-feed" class="view-wrap true-dom">
+    <div class="columns">
+      <!-- Left side column -->
+      <div class="column is-3 is-hidden-mobile">
+        <!-- Feed menu -->
+        <div class="feed-menu-v1">
+          <ul class="main-menu">
+            <li class="is-active">
+              <a>
+                <i data-feather="activity"></i>
+                <span>Feed</span>
+                <span class="close-icon">
+                                    <i data-feather="chevron-right"></i>
+                                </span>
+              </a>
+              <ul class="submenu">
+                <li class="is-subactive">
+                  <a>Trending <span class="tag">4</span></a>
+                </li>
+                <li>
+                  <a>Popular</a>
+                </li>
+                <li>
+                  <a>Following</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a>
+                <i data-feather="help-circle"></i>
+                <span>Questions</span>
+                <span class="close-icon">
+                                    <i data-feather="chevron-right"></i>
+                                </span>
+              </a>
+              <ul class="submenu">
+                <li>
+                  <a>Home</a>
+                </li>
+                <li>
+                  <a>My Questions</a>
+                </li>
+                <li>
+                  <a>Popular</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a>
+                <i data-feather="youtube"></i>
+                <span>Videos</span>
+                <span class="close-icon">
+                                    <i data-feather="chevron-right"></i>
+                                </span>
+              </a>
+              <ul class="submenu">
+                <li>
+                  <a>Home<span class="tag">7</span></a>
+                </li>
+                <li>
+                  <a>Suggested</a>
+                </li>
+                <li>
+                  <a>My Channel</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a>
+                <i data-feather="shopping-cart"></i>
+                <span>Shopping</span>
+                <span class="close-icon">
+                                    <i data-feather="chevron-right"></i>
+                                </span>
+              </a>
+              <ul class="submenu">
+                <li>
+                  <a>Trending<span class="tag">2</span></a>
+                </li>
+                <li>
+                  <a>Popular<span class="tag">5</span></a>
+                </li>
+                <li>
+                  <a>My Products</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a>
+                <i data-feather="music"></i>
+                <span>Music</span>
+                <span class="close-icon">
+                                    <i data-feather="chevron-right"></i>
+                                </span>
+              </a>
+              <ul class="submenu">
+                <li>
+                  <a>My Products</a>
+                </li>
+                <li>
+                  <a>Trending<span class="tag">6</span></a>
+                </li>
+                <li>
+                  <a>Popular</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /Left side column -->
+
+      <!-- Middle column -->
+      <div class="column is-6">
+
+        <!-- Publishing Area -->
+        <!-- /includes/pages/feed/compose-card.html -->
         <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
-      </div>
-      <div class="row" style="background-color: #ffffff">
+
+        <!-- Post 1 -->
+        <!-- /includes/pages/feed/posts/feed-post1.html -->
         <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
+
+        <!-- Load more posts -->
+        <div class=" load-more-wrap has-text-centered">
+          <a href="#" class="load-more-button">Load More</a>
+        </div>
+        <!-- /Load more posts -->
+
       </div>
-    </div>
+      <!-- /Middle column -->
 
-    <div class="col-md-2 p-0">
+      <!-- Right side column -->
+      <div class="column is-3">
 
+        <!-- Stories widget -->
+        <!-- /includes/widgets/stories-widget.html -->
+
+        <!-- Birthday widget -->
+        <!-- /includes/widgets/birthday-widget.html -->
+
+        <!-- Suggested friends widget -->
+        <!-- /includes/widgets/suggested-friends-1-widget.html -->
+
+        <!-- New job widget -->
+        <!-- /includes/widgets/new-job-widget.html -->
+
+      </div>
+      <!-- /Right side column -->
     </div>
   </div>
+  <!-- /Feed page main wrapper -->
 </div>
+
+

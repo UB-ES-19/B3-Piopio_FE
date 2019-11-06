@@ -13,14 +13,11 @@ import { PublishPostComponent } from './publish-post/publish-post.component';
 import { ListPostsComponent } from './list-posts/list-posts.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
-// Bootstrap modules (https://valor-software.com/ngx-bootstrap)
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { AccountDropdownComponent } from './header/account-dropdown/account-dropdown.component';
+import { HeaderMobileComponent } from './header-mobile/header-mobile.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import {NgxDropzoneModule} from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -31,7 +28,10 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     HomeComponent,
     PublishPostComponent,
     ListPostsComponent,
-    ProfileComponent
+    ProfileComponent,
+    AccountDropdownComponent,
+    HeaderMobileComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,11 +39,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     ReactiveFormsModule,
     HttpClientModule,
     AuthModule,
-    BrowserAnimationsModule,
-    ButtonsModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    CollapseModule.forRoot(),
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxDropzoneModule
   ],
   providers: [],
   bootstrap: [AppComponent]

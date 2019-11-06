@@ -1,14 +1,72 @@
-<div class="card shadow-sm">
-  <div class="card-body">
-    <form [formGroup]="postForm" (ngSubmit)="publish(postForm)">
-      <div class="form-group">
-        <textarea class="form-control" formControlName='content' rows="3" placeholder="What are you thinking?"></textarea>
-      </div>
-      <div class="btn-toolbar justify-content-between">
-        <div class="btn-group">
-          <button type="submit" [disabled]="postForm.invalid" class="btn btn-primary">Publish</button>
+<div id="compose-card" class="card is-new-content">
+  <!-- Top tabs -->
+  <div class="tabs-wrapper">
+
+    <!-- Tab content -->
+    <div class="tab-content">
+
+      <!-- Compose form -->
+      <form [formGroup]="postForm" (ngSubmit)="publish(postForm)">
+        <div class="compose">
+          <div class="compose-form">
+            <img src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/jenna.png" alt="">
+            <div class="control">
+              <textarea id="publish" formControlName='content' class="textarea" rows="3" placeholder="Write something about you..."></textarea>
+            </div>
+          </div>
         </div>
+        <!-- /Compose form -->
+
+        <!-- General basic options -->
+        <div id="basic-options" class="compose-options">
+          <!-- Upload action -->
+          <a (click)="toggleImagesUpload()" class="compose-option">
+            <i data-feather="camera"></i>
+            <span>Images</span>
+          </a>
+          <a (click)="toggleVideoUpload()" class="compose-option">
+            <i data-feather="video"></i>
+            <span>Video</span>
+          </a>
+        </div>
+
+
+        <!-- Footer buttons -->
+        <div class="more-wrap">
+          <button id="publish-button" type="submit" [disabled]="postForm.invalid" class="button is-solid accent-button is-fullwidth">
+            Publish
+          </button>
+        </div>
+
+      </form>
+
+      <div class="modal images-upload-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <ngx-dropzone (change)="onSelectImages($event)" [accept]="'image/*'">
+            <ngx-dropzone-label>Drop a image!</ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="f" *ngFor="let f of images" [removable]="true" (removed)="onRemoveImages(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </ngx-dropzone>
+          <button class="button has-text-centered">Upload</button>
+        </div>
+        <button class="modal-close is-large" aria-label="close" (click)="toggleImagesUpload()"></button>
       </div>
-    </form>
+
+      <div class="modal video-upload-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <ngx-dropzone (change)="onSelectVideo($event)" [accept]="'video/*'" [multiple]="false">
+            <ngx-dropzone-label>Drop a video!</ngx-dropzone-label>
+            <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" [file]="f" *ngFor="let f of videos" [removable]="true" (removed)="onRemoveVideo(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-video-preview>
+          </ngx-dropzone>
+          <button class="button has-text-centered">Upload</button>
+        </div>
+        <button class="modal-close is-large" aria-label="close" (click)="toggleVideoUpload()"></button>
+      </div>
+    </div>
   </div>
 </div>
