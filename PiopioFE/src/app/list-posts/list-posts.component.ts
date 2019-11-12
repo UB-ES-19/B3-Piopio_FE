@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../services/api.service';
 import {AuthService} from '../auth/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-posts',
@@ -13,23 +14,28 @@ export class ListPostsComponent implements OnInit {
   limit = 5;
   offset = 0;
   nextUrl: string;
+  username: string;
 
-  constructor(private apiService: ApiService, private authService: AuthService) { }
+  constructor(private apiService: ApiService, private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.apiService.getMyPosts(this.limit, this.offset).subscribe(
-      value => {
-        console.log(value);
-        this.nextUrl = value.next;
-        this.posts = this.posts.concat(value.results);
-        this.offset = this.posts.length;
-      }, error => {
-        console.log(error);
+    this.username = this.route.snapshot.paramMap.get('username');
+    console.log(this.username)
+    if(this.username){
+      this.apiService.getProfile(this.username).subscribe(other => {
+        this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
+          value => {
+            console.log("other")
+            console.log(value);
+            this.nextUrl = value.next;
+            this.posts = this.posts.concat(value.results);
+            this.offset = this.posts.length;
+          }, error => {
+            console.log(error);
+          });
       });
-  }
-
-  onScroll() {
-    if (this.nextUrl) {
+      
+    }else{
       this.apiService.getMyPosts(this.limit, this.offset).subscribe(
         value => {
           console.log(value);
@@ -39,6 +45,37 @@ export class ListPostsComponent implements OnInit {
         }, error => {
           console.log(error);
         });
+    }
+    
+  }
+
+  onScroll() {
+    if (this.nextUrl) {
+      if(this.username){
+        this.apiService.getProfile(this.username).subscribe(other => {
+          this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
+            value => {
+              console.log("other")
+              console.log(value);
+              this.nextUrl = value.next;
+              this.posts = this.posts.concat(value.results);
+              this.offset = this.posts.length;
+            }, error => {
+              console.log(error);
+            });
+        });
+        
+      }else{
+        this.apiService.getMyPosts(this.limit, this.offset).subscribe(
+          value => {
+            console.log(value);
+            this.nextUrl = value.next;
+            this.posts = this.posts.concat(value.results);
+            this.offset = this.posts.length;
+          }, error => {
+            console.log(error);
+          });
+      }
     }
   }
 

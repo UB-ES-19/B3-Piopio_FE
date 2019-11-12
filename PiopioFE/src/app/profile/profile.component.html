@@ -126,7 +126,7 @@
 
       <div class="column is-8">
         <div id="activity-feed" class="mt-10">
-          <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
+          <app-publish-post [listPostRef]="listPostsComponent" *ngIf="!this.username"></app-publish-post>
           <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
         </div>
       </div>

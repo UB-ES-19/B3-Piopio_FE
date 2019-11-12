@@ -31,7 +31,10 @@ export class ProfileComponent implements OnInit {
             other => {
               this.userProfile = other;
               console.log(this.userProfile)
-              if (other.followings.includes(this.userId)) { this.isFollowing = true; }
+              if (other.following.includes(this.userId)) { 
+                this.isFollowing = true; 
+                console.log(this.isFollowing);
+              }
           }, error => {
             console.log(error);
             // User not found

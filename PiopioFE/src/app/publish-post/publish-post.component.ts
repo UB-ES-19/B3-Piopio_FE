@@ -22,10 +22,12 @@ export class PublishPostComponent implements OnInit {
   ngOnInit() {
     this.postForm = this.formBuilder.group({
       content: ['', [Validators.required]],
+      type: ['text'],
     });
   }
 
   publish(post: FormGroup) {
+    console.log(post.value)
     this.apiService.createPost(post.value).subscribe(
       value => {
         this.listPostRef.addPost(post.value);
