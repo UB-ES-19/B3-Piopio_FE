@@ -16,7 +16,7 @@
             <img src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/dan.jpg" data-user-popover="1" alt="">
           </div>
           <div class="user-info">
-
+            <a routerLink="/{{post.user.username}}" > {{ post.user.username }} </a>
             <span class="time">July 26 2018, 01:03pm</span>
           </div>
         </div>
@@ -93,7 +93,7 @@
             <!-- Left column -->
             <div class="masonry-column-left" style="width: 100%">
               <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
-                <cl-image public-id="{{post.media[0].url}}" format="jpg">
+                <cl-image public-id="{{post.media[0 ].url}}" format="jpg">
 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
                 </cl-image>
               </a>
