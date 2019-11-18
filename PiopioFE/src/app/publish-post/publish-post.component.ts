@@ -57,8 +57,8 @@ export class PublishPostComponent implements OnInit {
       this.previews.forEach(preview => {
         this.mediaUrls.push({url: preview.public_id});
       });
+      post.value.media = this.mediaUrls;
     }
-    post.value.media = this.mediaUrls;
     this.apiService.createPost(post.value).subscribe(
       value => {
         this.listPostRef.addPost(post.value);
