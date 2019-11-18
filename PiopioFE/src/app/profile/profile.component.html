@@ -55,7 +55,7 @@
             <a hred="#" class="button has-min-width">Followers {{ userProfile.follower_count }}</a>
             <a href="#" class="button has-min-width">Following {{ userProfile.following_count }}</a>
           </div>
-          <div class="menu-end" *ngIf="userProfile">
+          <div class="menu-end" *ngIf="userProfile && username">
             <a *ngIf="!isFollowing" (click)="follow(userProfile.username)" class="button has-min-width">Follow</a>
             <a *ngIf="isFollowing" (click)="unfollow(userProfile.username)" class="button has-min-width">Unfollow</a>
             <a href="#" class="button has-min-width">About</a>

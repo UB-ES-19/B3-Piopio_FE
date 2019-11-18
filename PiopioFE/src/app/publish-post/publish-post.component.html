@@ -19,6 +19,15 @@
 
         <!-- General basic options -->
         <div id="basic-options" class="compose-options">
+
+          <div *ngIf="previews.length > 0" class="previews-container">
+            <a class="img" *ngFor="let preview of previews" (click)="deleteImage(preview)">
+              <div class="img__overlay img__overlay--red"><i class="mdi mdi-window-close"></i></div>
+              <img *ngIf="preview.type == 'image'" src="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{ preview.public_id }}.jpg"/>
+              <img *ngIf="preview.type == 'video'" src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ preview.public_id }}.jpg"/>
+            </a>
+          </div>
+
           <!-- Upload action -->
           <a (click)="toggleImagesUpload()" class="compose-option">
             <i data-feather="camera"></i>
@@ -49,7 +58,7 @@
               <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-image-preview>
           </ngx-dropzone>
-          <button class="button has-text-centered">Upload</button>
+          <button class="button has-text-centered" (click)="uploadImages()">Upload</button>
         </div>
         <button class="modal-close is-large" aria-label="close" (click)="toggleImagesUpload()"></button>
       </div>
@@ -63,7 +72,7 @@
               <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-video-preview>
           </ngx-dropzone>
-          <button class="button has-text-centered">Upload</button>
+          <button class="button has-text-centered" (click)="uploadVideo()">Upload</button>
         </div>
         <button class="modal-close is-large" aria-label="close" (click)="toggleVideoUpload()"></button>
       </div>
