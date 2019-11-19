@@ -65,6 +65,8 @@ export class PublishPostComponent implements OnInit {
         this.postForm.reset();
         this.previews = [];
         $('.compose-option').show();
+        $('.upload-close-button').show();
+        $('.upload-media-button').show();
       },
       error => {
         console.log(error);
@@ -72,7 +74,8 @@ export class PublishPostComponent implements OnInit {
   }
 
   private uploadMedia(mediaArray) {
-    $('.modal-close').hide();
+    $('.upload-close-button').hide();
+    $('.upload-media-button').hide();
     this.previews = [];
     mediaArray.forEach(media => {
       this.readFile(media).then(fileContents => {
@@ -122,6 +125,8 @@ export class PublishPostComponent implements OnInit {
           this.previews.splice(this.previews.indexOf(preview), 1);
           if (this.previews.length === 0) {
             $('.compose-option').show();
+            $('.upload-close-button').show();
+            $('.upload-media-button').show();
           }
       }, error => {
         console.log(error);

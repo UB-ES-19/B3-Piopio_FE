@@ -58,9 +58,9 @@
               <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-image-preview>
           </ngx-dropzone>
-          <button class="button has-text-centered" (click)="uploadImages()">Upload</button>
+          <button class="button has-text-centered upload-media-button" (click)="uploadImages()">Upload</button>
         </div>
-        <button class="modal-close is-large" aria-label="close" (click)="toggleImagesUpload()"></button>
+        <button class="modal-close is-large upload-close-button" aria-label="close" (click)="toggleImagesUpload()"></button>
       </div>
 
       <div class="modal video-upload-modal">
@@ -72,9 +72,9 @@
               <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-video-preview>
           </ngx-dropzone>
-          <button class="button has-text-centered" (click)="uploadVideo()">Upload</button>
+          <button class="button has-text-centered upload-media-button" (click)="uploadVideo()">Upload</button>
         </div>
-        <button class="modal-close is-large" aria-label="close" (click)="toggleVideoUpload()"></button>
+        <button class="modal-close is-large upload-close-button" aria-label="close" (click)="toggleVideoUpload()"></button>
       </div>
     </div>
   </div>
