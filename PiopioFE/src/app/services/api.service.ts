@@ -42,4 +42,15 @@ export class ApiService {
   unfollowUser(username: string) {
     return this.httpClient.post<any>(`${this.usersEndPoint}unfollow/`, {"username": username},{headers : this.httpHeaders});
   }
+
+  uploadMedia(type: string, fileContents: any) {
+    return this.httpClient.post(`http://api.cloudinary.com/v1_1/dt5t5tmbw/${type}/upload`, {
+      file: fileContents,
+      upload_preset: 'ywmfaral'
+    }, );
+  }
+
+  deleteMedia(publicId: string, deleteToken: string) {
+    return this.httpClient.post(`http://api.cloudinary.com/v1_1/dt5t5tmbw/delete_by_token`, { public_id: publicId, token: deleteToken });
+  }
 }

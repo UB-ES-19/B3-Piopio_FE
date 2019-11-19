@@ -20,12 +20,14 @@ export class ListPostsComponent implements OnInit {
 
   ngOnInit() {
     this.username = this.route.snapshot.paramMap.get('username');
-    console.log(this.username)
-    if(this.username){
+    this.getPosts();
+  }
+
+  getPosts() {
+    if (this.username) {
       this.apiService.getProfile(this.username).subscribe(other => {
         this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
           value => {
-            console.log("other")
             console.log(value);
             this.nextUrl = value.next;
             this.posts = this.posts.concat(value.results);
@@ -34,8 +36,7 @@ export class ListPostsComponent implements OnInit {
             console.log(error);
           });
       });
-      
-    }else{
+    } else {
       this.apiService.getMyPosts(this.limit, this.offset).subscribe(
         value => {
           console.log(value);
@@ -46,47 +47,19 @@ export class ListPostsComponent implements OnInit {
           console.log(error);
         });
     }
-    
   }
 
   onScroll() {
     if (this.nextUrl) {
-      if(this.username){
-        this.apiService.getProfile(this.username).subscribe(other => {
-          this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
-            value => {
-              console.log("other")
-              console.log(value);
-              this.nextUrl = value.next;
-              this.posts = this.posts.concat(value.results);
-              this.offset = this.posts.length;
-            }, error => {
-              console.log(error);
-            });
-        });
-        
-      }else{
-        this.apiService.getMyPosts(this.limit, this.offset).subscribe(
-          value => {
-            console.log(value);
-            this.nextUrl = value.next;
-            this.posts = this.posts.concat(value.results);
-            this.offset = this.posts.length;
-          }, error => {
-            console.log(error);
-          });
-      }
+      this.getPosts();
     }
   }
 
   addPost(post: any) {
     this.authService.me().subscribe(
       value => {
-        const data = {
-          content : post.content,
-          user: value,
-        };
-        this.posts.unshift(data);
+        post.user = value;
+        this.posts.unshift(post);
         this.offset = this.posts.length;
       },
       error => {

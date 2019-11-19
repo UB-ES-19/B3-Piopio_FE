@@ -18,6 +18,8 @@ import { AccountDropdownComponent } from './header/account-dropdown/account-drop
 import { HeaderMobileComponent } from './header-mobile/header-mobile.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import {NgxDropzoneModule} from 'ngx-dropzone';
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import { Cloudinary } from 'cloudinary-core';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {NgxDropzoneModule} from 'ngx-dropzone';
     HttpClientModule,
     AuthModule,
     InfiniteScrollModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'dt5t5tmbw' } as CloudinaryConfiguration),
   ],
   providers: [],
   bootstrap: [AppComponent]
