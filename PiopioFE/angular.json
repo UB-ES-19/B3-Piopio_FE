@@ -29,7 +29,6 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/feather-icons/dist/feather.min.js",
-              "node_modules/@fengyuanchen/datepicker/dist/datepicker.min.js",
               "src/assets/js/particles.min.js",
               "src/assets/js/jquery.fancybox.min.js",
               "src/assets/js/global.js",

@@ -6,63 +6,6 @@ function initGlobal() {
 
       //The following functions help trigger the autocompletes dropdowns
 
-      $.fn.openFriendsDrop = function () {
-        var e = $.Event("keyup", {keyCode: 65, which: 65});
-        $("#users-autocpl").focus();
-        $("#users-autocpl").attr('value', '');
-        $("#users-autocpl").triggerHandler(e);
-      };
-
-      $.fn.openActivitiesDrop = function () {
-        var e = $.Event("keyup", {keyCode: 65, which: 65});
-        $("#activities-autocpl").focus();
-        $("#activities-autocpl").attr('value', '');
-        $("#activities-autocpl").triggerHandler(e);
-      };
-
-      $.fn.openMoodDrop = function () {
-        var e = $.Event("keyup", {keyCode: 65, which: 65});
-        $("#mood-autocpl").focus();
-        $("#mood-autocpl").attr('value', '');
-        $("#mood-autocpl").triggerHandler(e);
-      };
-
-      $.fn.openDrinksDrop = function () {
-        var e = $.Event("keyup", {keyCode: 65, which: 65});
-        $("#drinking-autocpl").focus();
-        $("#drinking-autocpl").attr('value', '');
-        $("#drinking-autocpl").triggerHandler(e);
-      };
-
-      $.fn.openEatsDrop = function () {
-        var e = $.Event("keyup", {keyCode: 65, which: 65});
-        $("#eating-autocpl").focus();
-        $("#eating-autocpl").attr('value', '');
-        $("#eating-autocpl").triggerHandler(e);
-      };
-
-      $.fn.openReadsDrop = function () {
-        var e = $.Event("keyup", {keyCode: 65, which: 65});
-        $("#reading-autocpl").focus();
-        $("#reading-autocpl").attr('value', '');
-        $("#reading-autocpl").triggerHandler(e);
-      };
-
-      $.fn.openWatchDrop = function () {
-        var e = $.Event("keyup", {keyCode: 65, which: 65});
-        $("#watching-autocpl").focus();
-        $("#watching-autocpl").attr('value', '');
-        $("#watching-autocpl").triggerHandler(e);
-      };
-
-      $.fn.openTravelDrop = function () {
-        var e = $.Event("keyup", {keyCode: 65, which: 65});
-        $("#travel-autocpl").focus();
-        $("#travel-autocpl").attr('value', '');
-        $("#travel-autocpl").triggerHandler(e);
-      };
-
-
       //Init navbar
       $.fn.initNavbar = function () {
         $(window).on('scroll', function () {

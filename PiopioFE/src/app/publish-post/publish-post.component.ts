@@ -61,7 +61,7 @@ export class PublishPostComponent implements OnInit {
     }
     this.apiService.createPost(post.value).subscribe(
       value => {
-        this.listPostRef.addPost(post.value);
+        this.listPostRef.addPost();
         this.postForm.reset();
         this.previews = [];
         $('.compose-option').show();

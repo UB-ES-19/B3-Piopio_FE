@@ -55,15 +55,12 @@ export class ListPostsComponent implements OnInit {
     }
   }
 
-  addPost(post: any) {
-    this.authService.me().subscribe(
-      value => {
-        post.user = value;
-        this.posts.unshift(post);
-        this.offset = this.posts.length;
-      },
-      error => {
-        console.log(error);
-      });
+  addPost() {
+    this.apiService.getMyPosts(1, 0).subscribe(value => {
+      this.posts.unshift(value.results[0]);
+      this.offset = this.posts.length;
+    }, error => {
+      console.log(error);
+    });
   }
 }

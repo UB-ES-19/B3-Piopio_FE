@@ -20,6 +20,9 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import {NgxDropzoneModule} from 'ngx-dropzone';
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import { Cloudinary } from 'cloudinary-core';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
+import { ProfileHeaderComponent } from './profile/profile-header/profile-header.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,8 @@ import { Cloudinary } from 'cloudinary-core';
     AccountDropdownComponent,
     HeaderMobileComponent,
     SearchResultComponent,
+    ProfileEditComponent,
+    ProfileHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { Cloudinary } from 'cloudinary-core';
     AuthModule,
     InfiniteScrollModule,
     NgxDropzoneModule,
+    DateValueAccessorModule,
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'dt5t5tmbw' } as CloudinaryConfiguration),
   ],
   providers: [],

@@ -53,4 +53,8 @@ export class ApiService {
   deleteMedia(publicId: string, deleteToken: string) {
     return this.httpClient.post(`http://api.cloudinary.com/v1_1/dt5t5tmbw/delete_by_token`, { public_id: publicId, token: deleteToken });
   }
+
+  editUserProfile(id: number, data: any) {
+    return this.httpClient.put(`${this.usersEndPoint}${id}/`, {profile: data}, {headers : this.httpHeaders});
+  }
 }

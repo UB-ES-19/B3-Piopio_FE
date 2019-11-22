@@ -1,0 +1,68 @@
+<div class="columns is-multiline no-margin">
+  <!-- Left side column -->
+  <div class="column is-paddingless">
+
+    <!-- Timeline Header -->
+    <div class="cover-bg">
+      <img *ngIf="!userProfile.profile.banner_url" class="cover-image" src="https://via.placeholder.com/1600x460" data-demo-src="assets/images/demo/bg/4.png" alt="">
+      <cl-image *ngIf="userProfile.profile.banner_url" public-id="{{userProfile.profile.banner_url}}" class="cover-image"></cl-image>
+      <div class="avatar">
+        <img *ngIf="!userProfile.profile.avatar_url" id="user-avatar" class="avatar-image" src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/jenna.png" alt="">
+        <cl-image *ngIf="userProfile.profile.avatar_url" public-id="{{userProfile.profile.avatar_url}}" class="avatar-image"></cl-image>
+
+        <div class="avatar-button" *ngIf="myProfile && router.url == '/edit-profile'" (click)="toggleProfileMediaUpload('avatar')">
+          <i class="mdi mdi-plus" style="color: white; font-size: 20px"></i>
+        </div>
+      </div>
+      <div class="cover-overlay" *ngIf="myProfile && router.url == '/edit-profile'"></div>
+      <div class="cover-edit" *ngIf="myProfile && router.url == '/edit-profile'" (click)="toggleProfileMediaUpload('banner')">
+        <i class="mdi mdi-camera"></i>
+        <span>Edit cover image</span>
+      </div>
+    </div>
+
+    <div class="profile-menu is-hidden-mobile">
+      <div class="menu-start">
+        <a hred="#" class="button has-min-width">Followers {{ userProfile.follower_count }}</a>
+        <a href="#" class="button has-min-width">Following {{ userProfile.following_count }}</a>
+      </div>
+      <div class="menu-end">
+        <div *ngIf="!myProfile">
+          <a *ngIf="!following" (click)="follow(userProfile.username)" class="button has-min-width">Follow</a>
+          <a *ngIf="following" (click)="unfollow(userProfile.username)" class="button has-min-width">Unfollow</a>
+        </div>
+        <a routerLink="/edit-profile" class="button has-min-width" *ngIf="router.url == '/profile'">Edit profile</a>
+        <a routerLink="/profile" class="button has-min-width" *ngIf="router.url == '/edit-profile'">Profile</a>
+      </div>
+    </div>
+
+    <div class="profile-subheader">
+      <div class="subheader-start is-hidden-mobile">
+
+      </div>
+      <div class="subheader-middle">
+        <h2>{{ userProfile.username }}</h2>
+        <span>{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</span>
+      </div>
+      <div class="subheader-end is-hidden-mobile">
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal" id="profile-media-upload-modal" *ngIf="myProfile && router.url == '/edit-profile'">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <ngx-dropzone (change)="onSelectImage($event)" [accept]="'image/*'" [multiple]="false">
+        <ngx-dropzone-label>Drop a image!</ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="f" *ngFor="let f of media" [removable]="true" (removed)="onRemoveImage(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+      </ngx-dropzone>
+      <button class="button has-text-centered upload-media-button" (click)="uploadProfileMedia()">Upload</button>
+    </div>
+    <button class="modal-close is-large upload-close-button" aria-label="close" (click)="toggleProfileMediaUpload()"></button>
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+<div class="columns">
+  <div class="column">
+    <form [formGroup]="editProfileForm" (ngSubmit)="saveProfile(editProfileForm)">
+      <div class="field">
+        <label class="label">First name</label>
+        <div class="control">
+          <input class="input" formControlName='first_name' type="text" [ngClass]="{'is-danger': editProfileForm.get('first_name').errors?.required}">
+        </div>
+        <p *ngIf="(editProfileForm.get('first_name').dirty || editProfileForm.get('first_name').touched) && editProfileForm.get('first_name').invalid && editProfileForm.get('first_name').errors.required" class="help is-danger">First name is required</p>
+      </div>
+      <div class="field">
+        <label class="label">Last name</label>
+        <div class="control">
+          <input class="input" formControlName='last_name' type="text" [ngClass]="{'is-danger': editProfileForm.get('first_name').errors?.required}">
+        </div>
+        <p *ngIf="(editProfileForm.get('last_name').dirty || editProfileForm.get('last_name').touched) && editProfileForm.get('last_name').invalid && editProfileForm.get('last_name').errors.required" class="help is-danger">Last name is required</p>
+      </div>
+      <div class="field">
+        <label class="label">Birthday</label>
+        <div class="control">
+          <input class="input"  formControlName='birthday' type="date" placeholder="Select a date" useValueAsDate>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+          <textarea class="textarea" formControlName='description' placeholder="Textarea"></textarea>
+        </div>
+      </div>
+      <div class="control">
+        <button class="button is-rounded is-solid accent-button raised" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
