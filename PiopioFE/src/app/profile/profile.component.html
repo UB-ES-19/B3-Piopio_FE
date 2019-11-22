@@ -3,121 +3,36 @@
 
   <!-- Profile page main wrapper -->
   <div id="profile-main" class="view-wrap is-headless true-dom" >
-    <div class="columns is-multiline no-margin">
-      <!-- Left side column -->
-      <div class="column is-paddingless">
 
-        <!-- Timeline Header -->
-        <div class="cover-bg">
-          <img class="cover-image" src="https://via.placeholder.com/1600x460" data-demo-src="assets/images/demo/bg/4.png" alt="">
-          <div class="avatar">
-            <img id="user-avatar" class="avatar-image" src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/jenna.png" alt="">
-            <div class="avatar-button">
-              <i data-feather="plus"></i>
-            </div>
-            <div class="pop-button is-far-left has-tooltip modal-trigger" data-modal="change-profile-pic-modal" data-placement="right" data-title="Change profile picture">
-              <a class="inner">
-                <i data-feather="camera"></i>
-              </a>
-            </div>
-            <div id="follow-pop" class="pop-button pop-shift is-left has-tooltip" data-placement="top" data-title="Subscription">
-              <a class="inner">
-                <i class="inactive-icon" data-feather="bell"></i>
-                <i class="active-icon" data-feather="bell-off"></i>
-              </a>
-            </div>
-            <div id="invite-pop" class="pop-button pop-shift is-center has-tooltip" data-placement="top" data-title="Relationship">
-              <a href="#" class="inner">
-                <i class="inactive-icon" data-feather="plus"></i>
-                <i class="active-icon" data-feather="minus"></i>
-              </a>
-            </div>
-            <div id="chat-pop" class="pop-button is-right has-tooltip" data-placement="top" data-title="Chat">
-              <a class="inner">
-                <i data-feather="message-circle"></i>
-              </a>
-            </div>
-            <div class="pop-button is-far-right has-tooltip" data-placement="right" data-title="Send message">
-              <a href="messages-inbox.html" class="inner">
-                <i data-feather="mail"></i>
-              </a>
-            </div>
-          </div>
-          <div class="cover-overlay"></div>
-          <div class="cover-edit modal-trigger" data-modal="change-cover-modal">
-            <i class="mdi mdi-camera"></i>
-            <span>Edit cover image</span>
-          </div>
-        </div>
+    <app-profile-header *ngIf="userProfile" [userProfile]="userProfile" [myProfile]="myProfile" [following]="imFollower"></app-profile-header>
 
-        <div class="profile-menu is-hidden-mobile">
-          <div class="menu-start"  *ngIf="userProfile">
-            <a hred="#" class="button has-min-width">Followers {{ userProfile.follower_count }}</a>
-            <a href="#" class="button has-min-width">Following {{ userProfile.following_count }}</a>
-          </div>
-          <div class="menu-end" *ngIf="userProfile && username">
-            <a *ngIf="!isFollowing" (click)="follow(userProfile.username)" class="button has-min-width">Follow</a>
-            <a *ngIf="isFollowing" (click)="unfollow(userProfile.username)" class="button has-min-width">Unfollow</a>
-            <a href="#" class="button has-min-width">About</a>
-          </div>
-        </div>
+    <app-profile-edit *ngIf="router.url == '/edit-profile' && userProfile" [userProfile]="userProfile"></app-profile-edit>
 
-        <div class="profile-subheader">
-          <div class="subheader-start is-hidden-mobile">
-
-          </div>
-          <div class="subheader-middle" *ngIf="userProfile">
-            <h2>{{ userProfile.username }}</h2>
-            <span>{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</span>
-          </div>
-          <div class="subheader-end is-hidden-mobile">
-
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="columns">
+    <div class="columns" *ngIf="router.url != '/edit-profile' && userProfile">
       <div id="profile-timeline-widgets" class="column is-4">
 
         <div class="basic-infos-wrapper">
           <div class="card is-profile-info">
             <div class="info-row">
               <div>
-                <span>Studied at</span>
-                <a class="is-inverted">Georgetown University</a>
+                <span>Description</span>
+                <p>{{ userProfile.profile.description }}</p>
               </div>
               <i class="mdi mdi-school"></i>
             </div>
             <div class="info-row">
               <div>
-                <span>Married to</span>
-                <a class="is-inverted">Dan Walker</a>
+                <span>Name</span>
+                <p>{{ userProfile.profile.first_name }} {{ userProfile.profile.last_name }}</p>
+              </div>
+              <i class="mdi mdi-school"></i>
+            </div>
+            <div class="info-row">
+              <div>
+                <span>Birthday</span>
+                <p>{{ userProfile.profile.birthday | date : 'dd/MM/yyyy' }}</p>
               </div>
               <i class="mdi mdi-heart"></i>
-            </div>
-            <div class="info-row">
-              <div>
-                <span>From</span>
-                <a class="is-inverted">Melbourne, AU</a>
-              </div>
-              <i class="mdi mdi-earth"></i>
-            </div>
-            <div class="info-row">
-              <div>
-                <span>Lives in</span>
-                <a class="is-inverted">Los Angeles, CA</a>
-              </div>
-              <i class="mdi mdi-map-marker"></i>
-            </div>
-            <div class="info-row">
-              <div>
-                <span>Followers</span>
-                <a class="is-muted">258 followers</a>
-              </div>
-              <i class="mdi mdi-bell-ring"></i>
             </div>
           </div>
         </div>
