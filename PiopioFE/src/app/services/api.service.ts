@@ -23,6 +23,10 @@ export class ApiService {
     return this.httpClient.get<any>(`${this.usersEndPoint}${id}/posts/?limit=${limit}&offset=${offset}`, {headers : this.httpHeaders});
   }
 
+  getFollowedUserPosts(id: any){
+    return this.httpClient.get<any>(`${this.postsEndPoint}${id}/all_related`, {headers : this.httpHeaders});
+  }
+
   getMyProfile() {
     return this.httpClient.get<any>(`${this.usersEndPoint}me`, {headers : this.httpHeaders});
   }

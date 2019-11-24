@@ -37,15 +37,17 @@ export class ListPostsComponent implements OnInit {
           });
       });
     } else {
-      this.apiService.getMyPosts(this.limit, this.offset).subscribe(
-        value => {
-          console.log(value);
-          this.nextUrl = value.next;
-          this.posts = this.posts.concat(value.results);
-          this.offset = this.posts.length;
-        }, error => {
-          console.log(error);
-        });
+      this.apiService.getMyProfile().subscribe(other => {
+        this.apiService.getFollowedUserPosts(other.id).subscribe(
+          value => {
+            console.log(value);
+            this.nextUrl = value.next;
+            this.posts = this.posts.concat(value.results);
+            this.offset = this.posts.length;
+          }, error => {
+            console.log(error);
+          });
+      });
     }
   }
 
