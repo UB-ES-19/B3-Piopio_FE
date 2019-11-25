@@ -7,7 +7,7 @@
     </h3>
 
     <div class="card-row">
-      <h3 *ngIf="users.length==0">No users</h3>
+      <h3 *ngIf="users.length==0"><b>No users</b></h3>
       <div *ngFor="let user of users" class="card-flex friend-card">
         <div class="img-container">
           <img class="avatar" src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/dan.jpg"
@@ -43,24 +43,10 @@
   </div>
 
   <!--Posts tab-->
-  <div id="all-friends" class="card-row-wrap is-active">
-    <div class="card-row">
-      <h3 *ngIf="posts.length==0">No posts</h3>
-      <div *ngFor="let post of posts" class="card-flex friend-card">
-        <div class="img-container">
-          <p>{{ post.content }}</p>
-        </div> 
-        <div class="friend-stats">
-          <div class="stat-block">
-            <label>User</label>
-            <h3>{{ post.user.profile.first_name }} '<a (click)="goToProfile(post.user.username)">{{ post.user.username }}</a>' {{ post.user.profile.last_name }}</h3>
-          </div>
-          <div class="stat-block">
-            <label>Date</label>
-            <h3>{{ post.created_at | date:'dd-MM-yyyy' }}</h3>
-          </div>
-        </div>
-      </div>
+  <div *ngIf="posts.length == 0 "><b>No posts</b></div>
+  <div *ngIf="posts.length > 0" style="display: flex; flex-direction: row;  flex-wrap: wrap; width: 100%">
+    <div *ngFor="let post of posts" style="width: 50%; padding: 20px;">
+      <app-post-card [post]="post" ></app-post-card>
     </div>
   </div>
 </div>
