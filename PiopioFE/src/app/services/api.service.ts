@@ -24,7 +24,7 @@ export class ApiService {
   }
 
   getFollowedUserPosts(id: any){
-    return this.httpClient.get<any>(`${this.postsEndPoint}${id}/all_related`, {headers : this.httpHeaders});
+    return this.httpClient.get<any>(`${this.usersEndPoint}${id}/all_related/`, {headers : this.httpHeaders});
   }
 
   getMyProfile() {
