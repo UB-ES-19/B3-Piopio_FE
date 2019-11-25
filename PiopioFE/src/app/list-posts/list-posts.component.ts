@@ -26,7 +26,7 @@ export class ListPostsComponent implements OnInit {
   getPosts() {
     if (this.username) {
       this.apiService.getProfile(this.username).subscribe(other => {
-        this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
+        this.apiService.getFollowedUserPosts(other.id, this.limit, this.offset).subscribe(
           value => {
             console.log(value);
             this.nextUrl = value.next;
@@ -38,7 +38,7 @@ export class ListPostsComponent implements OnInit {
       });
     } else {
       this.apiService.getMyProfile().subscribe(other => {
-        this.apiService.getFollowedUserPosts(other.id).subscribe(
+        this.apiService.getFollowedUserPosts(other.id, this.limit, this.offset).subscribe(
           value => {
             console.log(value);
             this.nextUrl = value.next;
