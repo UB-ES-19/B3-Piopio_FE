@@ -23,6 +23,7 @@ import { Cloudinary } from 'cloudinary-core';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { ProfileHeaderComponent } from './profile/profile-header/profile-header.component';
+import { PostCardComponent } from './list-posts/post-card/post-card.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ProfileHeaderComponent } from './profile/profile-header/profile-header.
     SearchResultComponent,
     ProfileEditComponent,
     ProfileHeaderComponent,
+    PostCardComponent,
   ],
   imports: [
     BrowserModule,

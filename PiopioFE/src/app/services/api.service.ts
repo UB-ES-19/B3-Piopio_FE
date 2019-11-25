@@ -35,6 +35,10 @@ export class ApiService {
     return this.httpClient.get<any>(`${this.usersEndPoint}search/?username=${username}`, {headers : this.httpHeaders});
   }
 
+  searchPosts(content: string) {
+    return this.httpClient.get<any>(`${this.postsEndPoint}search/?content=${content}`, {headers : this.httpHeaders});
+  }
+
   followUser(username: string) {
     return this.httpClient.post<any>(`${this.usersEndPoint}follow/`, {"username": username},{headers : this.httpHeaders});
   }
