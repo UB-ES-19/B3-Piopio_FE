@@ -149,6 +149,13 @@
 
       <!-- Post footer -->
       <div class="card-footer">
+        <h4 (click)="clickOnRetweet(post.id)" 
+        [ngStyle]="{'color':post.retweeted === 'false' ? 'gray' : 'blue'}"
+         style="cursor: pointer">&#10226;</h4>
+        <h4 (click)="clickOnLike(post.id)"
+        [ngStyle]="{'color':post.liked === 'false' ? 'gray' : 'red'}"
+
+        style="cursor: pointer">&#10084;</h4>
         <!-- Post statistics -->
         <div class="social-count">
           <div class="likes-count">

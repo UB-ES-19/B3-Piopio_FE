@@ -24,7 +24,8 @@ export class ListPostsComponent implements OnInit {
   }
 
   getPosts() {
-    if (this.username) {
+
+     if (this.username) {
       this.apiService.getProfile(this.username).subscribe(other => {
         this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
           value => {
@@ -47,6 +48,8 @@ export class ListPostsComponent implements OnInit {
           console.log(error);
         });
     }
+
+
   }
 
   onScroll() {
@@ -63,4 +66,32 @@ export class ListPostsComponent implements OnInit {
       console.log(error);
     });
   }
+
+  clickOnRetweet(postId:any){
+    console.log(postId)
+    this.apiService.clickOnRT(postId).subscribe(
+      value =>{
+        this.getPosts();
+      }, error=>{
+        console.log(error);
+      })
+
+
+  }
+
+  clickOnLike(postId:any){
+    console.log(postId)
+    this.apiService.clickOnLike(postId).subscribe(
+      value =>{
+        this.getPosts();
+
+      }, error=>{
+        console.log(error);
+      })
+
+  }
+
+
+
+
 }

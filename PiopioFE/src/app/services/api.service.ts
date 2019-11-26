@@ -50,6 +50,15 @@ export class ApiService {
     }, );
   }
 
+  clickOnLike(postId:any){
+    return this.httpClient.get<any>(`${this.usersEndPoint}like/${postId}`, {headers : this.httpHeaders});
+  }
+
+  clickOnRT(postId:any){
+    return this.httpClient.get<any>(`${this.usersEndPoint}retweet/${postId}`, {headers : this.httpHeaders});
+
+  }
+
   deleteMedia(publicId: string, deleteToken: string) {
     return this.httpClient.post(`http://api.cloudinary.com/v1_1/dt5t5tmbw/delete_by_token`, { public_id: publicId, token: deleteToken });
   }
