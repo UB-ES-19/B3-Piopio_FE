@@ -23,6 +23,10 @@ export class ApiService {
     return this.httpClient.get<any>(`${this.usersEndPoint}${id}/posts/?limit=${limit}&offset=${offset}`, {headers : this.httpHeaders});
   }
 
+  getFollowedUserPosts(id: any, limit: number, offset: number) {
+    return this.httpClient.get<any>(`${this.usersEndPoint}${id}/all_related/?limit=${limit}&offset=${offset}`, {headers : this.httpHeaders});
+  }
+
   getMyProfile() {
     return this.httpClient.get<any>(`${this.usersEndPoint}me`, {headers : this.httpHeaders});
   }
@@ -33,6 +37,10 @@ export class ApiService {
 
   searchUser(username: string) {
     return this.httpClient.get<any>(`${this.usersEndPoint}search/?username=${username}`, {headers : this.httpHeaders});
+  }
+
+  searchPosts(content: string) {
+    return this.httpClient.get<any>(`${this.postsEndPoint}search/?content=${content}`, {headers : this.httpHeaders});
   }
 
   followUser(username: string) {

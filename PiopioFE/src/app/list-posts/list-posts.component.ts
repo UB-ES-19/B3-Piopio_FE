@@ -24,10 +24,10 @@ export class ListPostsComponent implements OnInit {
   }
 
   getPosts() {
-
-     if (this.username) {
+    if (this.username) {
+      console.log(this.username)
       this.apiService.getProfile(this.username).subscribe(other => {
-        this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
+        this.apiService.getFollowedUserPosts(other.id, this.limit, this.offset).subscribe(
           value => {
             console.log(value);
             this.nextUrl = value.next;
@@ -38,15 +38,17 @@ export class ListPostsComponent implements OnInit {
           });
       });
     } else {
-      this.apiService.getMyPosts(this.limit, this.offset).subscribe(
-        value => {
-          console.log(value);
-          this.nextUrl = value.next;
-          this.posts = this.posts.concat(value.results);
-          this.offset = this.posts.length;
-        }, error => {
-          console.log(error);
-        });
+      this.apiService.getMyProfile().subscribe(me => {
+        this.apiService.getFollowedUserPosts(me.id, this.limit, this.offset).subscribe(
+          value => {
+            console.log(value);
+            this.nextUrl = value.next;
+            this.posts = this.posts.concat(value.results);
+            this.offset = this.posts.length;
+          }, error => {
+            console.log(error);
+          });
+      });
     }
 
 

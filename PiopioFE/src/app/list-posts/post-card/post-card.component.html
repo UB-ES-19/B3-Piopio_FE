@@ -1,0 +1,160 @@
+<div class="card is-post">
+  <!-- Main wrap -->
+  <div class="content-wrap">
+    <!-- Post header -->
+    <div class="card-heading">
+      <!-- User meta -->
+      <div class="user-block">
+        <div class="image">
+          <img src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/dan.jpg" data-user-popover="1" alt="">
+        </div>
+        <div class="user-info">
+          <a routerLink="/{{post.user.username}}" > {{ post.user.username }} </a>
+          <span class="time">{{ post.created_at | date: "dd-MM-YYYY hh:mm"}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- /Post header -->
+
+    <!-- Post body -->
+    <div class="card-body">
+      <!-- Post body text -->
+      <div class="post-text">
+        <h4 class="card-title mt-3"></h4>
+        <p>{{ post.content }}</p>
+      </div>
+
+      <div class="videos-wrapper is-home" *ngIf="post.type == 'video' && post.media?.length == 1">
+        <div class="home-content" style="padding: 0">
+          <div class="collections-wrap is-active" style="padding: 0">
+            <div class="collection">
+              <div class="video-collection" style="padding: 0">
+                <a class="episode" data-fancybox href="#video-{{post.id}}" style="width: 100%;">
+                  <div class="episode-thumbnail">
+                    <div class="episode-overlay"></div>
+                    <div class="play-button">
+                      <i data-feather="play-circle"></i>
+                    </div>
+                    <img style="width: 100%" src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ post.media[0].url }}.jpg" alt="">
+                  </div>
+                </a>
+                <!--                  <cl-video public-id="{{ post.media[0].url }}" id="video-{{post.id}}" style="display:none;" controls>-->
+
+                <!--                  </cl-video>-->
+                <video width="1080" height="720" controls id="video-{{post.id}}" style="display:none;">
+                  <source src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ post.media[0].url }}.mp4" type="video/mp4">
+                  Your browser doesn't support HTML5 video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="post-image" *ngIf="post.type == 'image' && post.media?.length == 1">
+        <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
+          <cl-image public-id="{{post.media[0].url}}" format="jpg">
+            <!--              <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+          </cl-image>
+        </a>
+      </div>
+      <div class="post-image" *ngIf="post.type == 'image' && post.media?.length == 2">
+        <!-- CSS masonry wrap -->
+        <div class="masonry-grid">
+          <!-- Left column -->
+          <div class="masonry-column-left" style="width: 50%">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
+              <cl-image public-id="{{post.media[0].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+          </div>
+          <!-- Right column -->
+          <div class="masonry-column-right" style="width: 50%">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[1].url}}.jpg">
+              <cl-image public-id="{{post.media[1].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="post-image" *ngIf="post.type == 'image' && post.media?.length == 3">
+        <!-- CSS masonry wrap -->
+        <div class="masonry-grid">
+          <!-- Left column -->
+          <div class="masonry-column-left" style="width: 100%">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
+              <cl-image public-id="{{post.media[0 ].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+          </div>
+          <!-- Right column -->
+          <div class="masonry-column-right" style="width: 45%">
+            <a [attr.data-fancybox]="'gallery-'+post.id"  href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[1].url}}.jpg">
+              <cl-image public-id="{{post.media[1].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+            <a [attr.data-fancybox]="'gallery-'+post.id"  href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[2].url}}.jpg">
+              <cl-image public-id="{{post.media[2].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="post-image" *ngIf="post.type == 'image' && post.media?.length == 4">
+        <!-- CSS masonry wrap -->
+        <div class="masonry-grid">
+          <!-- Left column -->
+          <div class="masonry-column-left" style="width: 50%">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
+              <cl-image public-id="{{post.media[0].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+            <a data-fancybox="gallery" href="{{post.media[1].url}}">
+              <cl-image public-id="{{post.media[1].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+          </div>
+          <!-- Right column -->
+          <div class="masonry-column-right" style="width: 50%">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[2].url}}.jpg">
+              <cl-image public-id="{{post.media[2].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[3].url}}.jpg">
+              <cl-image public-id="{{post.media[3].url}}" format="jpg">
+                <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
+              </cl-image>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Post body -->
+
+    <!-- Post footer -->
+    <div class="card-footer">
+      <!-- Post statistics -->
+      <div class="social-count">
+        <div class="likes-count">
+          <i class="mdi mdi-heart"></i>
+          <span>27</span>
+        </div>
+        <div class="comments-count">
+          <i class="mdi mdi-comment"></i>
+          <span>3</span>
+        </div>
+      </div>
+    </div>
+    <!-- /Post footer -->
+  </div>
+  <!-- /Main wrap -->
+</div>
