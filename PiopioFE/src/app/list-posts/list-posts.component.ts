@@ -15,6 +15,7 @@ export class ListPostsComponent implements OnInit {
   offset = 0;
   nextUrl: string;
   username: string;
+  currentUser: any;
 
   constructor(private apiService: ApiService, private authService: AuthService, private route: ActivatedRoute) { }
 
@@ -39,6 +40,7 @@ export class ListPostsComponent implements OnInit {
       });
     } else {
       this.apiService.getMyProfile().subscribe(me => {
+        this.currentUser = me;
         this.apiService.getFollowedUserPosts(me.id, this.limit, this.offset).subscribe(
           value => {
             console.log(value);
@@ -50,6 +52,8 @@ export class ListPostsComponent implements OnInit {
           });
       });
     }
+
+
   }
 
   onScroll() {

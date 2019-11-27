@@ -1,6 +1,7 @@
 <div id="account-dropdown" class="navbar-item is-account drop-trigger has-caret">
   <div class="user-image">
-    <img  src="https://via.placeholder.com/400x400" data-demo-src="assets/images/avatars/jenna.png" alt="">
+    <img *ngIf="currentUser && currentUser.profile.avatar_url == ''" src="assets/images/noProfilePicture.png" alt="">
+    <img *ngIf="currentUser && currentUser.profile.avatar_url != ''" src="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{currentUser.profile.avatar_url}}"  alt="">
     <span class="indicator"></span>
   </div>
 
@@ -17,7 +18,7 @@
               <i data-feather="user"></i>
             </div>
             <div class="media-content">
-              <h3>Profile</h3>
+              <h3 *ngIf="currentUser">{{currentUser.username}}</h3>
               <small>Access your profile.</small>
             </div>
           </div>

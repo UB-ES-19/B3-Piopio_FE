@@ -9,13 +9,15 @@ import {Router} from '@angular/router';
 })
 export class AccountDropdownComponent implements OnInit {
 
-  username: string;
+  currentUser: any;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.username = '';
   }
 
   ngOnInit() {
+    this.authService.me().subscribe(value => {
+      this.currentUser = value;
+    });
   }
 
   doLogout() {

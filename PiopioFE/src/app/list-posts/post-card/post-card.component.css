@@ -1,0 +1,22 @@
+.likes-block{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.retweet-block{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.retweet-block > i{
+  font-size: 1.3em;
+}
+
+.likes-block > span{
+  margin-bottom: 2px;
+}
+.retweet-block > span{
+  margin-bottom: 2px;
+}

@@ -6,11 +6,12 @@
       <!-- User meta -->
       <div class="user-block">
         <div class="image">
-          <img src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/dan.jpg" data-user-popover="1" alt="">
+          <img *ngIf="post.user.profile.avatar_url == ''" src="assets/images/noProfilePicture.png" data-user-popover="1" alt="">
+          <img *ngIf="post.user.profile.avatar_url != ''" src="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.user.profile.avatar_url}}" data-user-popover="1" alt="">
         </div>
         <div class="user-info">
           <a routerLink="/{{post.user.username}}" > {{ post.user.username }} </a>
-          <span class="time">{{ post.created_at | date: "dd-MM-YYYY hh:mm"}}</span>
+          <span class="time">{{ post.created_at | date: "dd/MM/yyyy hh:mm"}}</span>
         </div>
       </div>
     </div>
@@ -53,8 +54,8 @@
       </div>
 
       <div class="post-image" *ngIf="post.type == 'image' && post.media?.length == 1">
-        <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
-          <cl-image public-id="{{post.media[0].url}}" format="jpg">
+        <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}">
+          <cl-image public-id="{{post.media[0].url}}" style="width: 100%;">
             <!--              <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
           </cl-image>
         </a>
@@ -64,16 +65,16 @@
         <div class="masonry-grid">
           <!-- Left column -->
           <div class="masonry-column-left" style="width: 50%">
-            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
-              <cl-image public-id="{{post.media[0].url}}" format="jpg">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}">
+              <cl-image public-id="{{post.media[0].url}}">
                 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
               </cl-image>
             </a>
           </div>
           <!-- Right column -->
           <div class="masonry-column-right" style="width: 50%">
-            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[1].url}}.jpg">
-              <cl-image public-id="{{post.media[1].url}}" format="jpg">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[1].url}}">
+              <cl-image public-id="{{post.media[1].url}}">
                 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
               </cl-image>
             </a>
@@ -85,21 +86,21 @@
         <div class="masonry-grid">
           <!-- Left column -->
           <div class="masonry-column-left" style="width: 100%">
-            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
-              <cl-image public-id="{{post.media[0 ].url}}" format="jpg">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}">
+              <cl-image public-id="{{post.media[0 ].url}}">
                 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
               </cl-image>
             </a>
           </div>
           <!-- Right column -->
           <div class="masonry-column-right" style="width: 45%">
-            <a [attr.data-fancybox]="'gallery-'+post.id"  href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[1].url}}.jpg">
-              <cl-image public-id="{{post.media[1].url}}" format="jpg">
+            <a [attr.data-fancybox]="'gallery-'+post.id"  href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[1].url}}">
+              <cl-image public-id="{{post.media[1].url}}">
                 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
               </cl-image>
             </a>
-            <a [attr.data-fancybox]="'gallery-'+post.id"  href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[2].url}}.jpg">
-              <cl-image public-id="{{post.media[2].url}}" format="jpg">
+            <a [attr.data-fancybox]="'gallery-'+post.id"  href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[2].url}}">
+              <cl-image public-id="{{post.media[2].url}}">
                 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
               </cl-image>
             </a>
@@ -111,7 +112,7 @@
         <div class="masonry-grid">
           <!-- Left column -->
           <div class="masonry-column-left" style="width: 50%">
-            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}.jpg">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}">
               <cl-image public-id="{{post.media[0].url}}" format="jpg">
                 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
               </cl-image>
@@ -124,12 +125,12 @@
           </div>
           <!-- Right column -->
           <div class="masonry-column-right" style="width: 50%">
-            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[2].url}}.jpg">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[2].url}}">
               <cl-image public-id="{{post.media[2].url}}" format="jpg">
                 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
               </cl-image>
             </a>
-            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[3].url}}.jpg">
+            <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[3].url}}">
               <cl-image public-id="{{post.media[3].url}}" format="jpg">
                 <!--                  <cl-transformation height="250" width="250" crop="fill"></cl-transformation>-->
               </cl-image>
@@ -144,13 +145,13 @@
     <div class="card-footer">
       <!-- Post statistics -->
       <div class="social-count">
-        <div class="likes-count">
-          <i class="mdi mdi-heart"></i>
-          <span>27</span>
+        <div class="likes-block">
+          <i class="mdi mdi-heart" (click)="clickOnLike()" style="cursor: pointer" [ngStyle]="{'color': post.liked == 'false' ? 'gray' : '#f75d5d'}"></i>
+          <span>{{post.favorited_count}}</span>
         </div>
-        <div class="comments-count">
-          <i class="mdi mdi-comment"></i>
-          <span>3</span>
+        <div class="retweet-block">
+          <i class="mdi mdi-twitter-retweet"  (click)="clickOnRetweet()" style="cursor: pointer;" [ngStyle]="{'color':post.retweeted === 'false' ? 'gray' : '#6fd836'}"></i>
+          <span>{{post.retweeted_count}}</span>
         </div>
       </div>
     </div>
