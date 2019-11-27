@@ -4,10 +4,10 @@
 
     <!-- Timeline Header -->
     <div class="cover-bg">
-      <img *ngIf="!userProfile.profile.banner_url" class="cover-image" src="https://via.placeholder.com/1600x460" data-demo-src="assets/images/demo/bg/4.png" alt="">
+      <img *ngIf="!userProfile.profile.banner_url" class="cover-image" src="https://myturnstone.com/wp-content/uploads/2015/11/dark-grey-header.jpg" alt="">
       <cl-image *ngIf="userProfile.profile.banner_url" public-id="{{userProfile.profile.banner_url}}" class="cover-image"></cl-image>
       <div class="avatar">
-        <img *ngIf="!userProfile.profile.avatar_url" id="user-avatar" class="avatar-image" src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/jenna.png" alt="">
+        <img *ngIf="!userProfile.profile.avatar_url" id="user-avatar" class="avatar-image" src="assets/images/noProfilePicture.png" alt="">
         <cl-image *ngIf="userProfile.profile.avatar_url" public-id="{{userProfile.profile.avatar_url}}" class="avatar-image"></cl-image>
 
         <div class="avatar-button" *ngIf="myProfile && router.url == '/edit-profile'" (click)="toggleProfileMediaUpload('avatar')">

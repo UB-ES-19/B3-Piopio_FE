@@ -15,6 +15,7 @@ export class ListPostsComponent implements OnInit {
   offset = 0;
   nextUrl: string;
   username: string;
+  currentUser: any;
 
   constructor(private apiService: ApiService, private authService: AuthService, private route: ActivatedRoute) { }
 
@@ -39,6 +40,7 @@ export class ListPostsComponent implements OnInit {
       });
     } else {
       this.apiService.getMyProfile().subscribe(me => {
+        this.currentUser = me;
         this.apiService.getFollowedUserPosts(me.id, this.limit, this.offset).subscribe(
           value => {
             console.log(value);
@@ -68,32 +70,4 @@ export class ListPostsComponent implements OnInit {
       console.log(error);
     });
   }
-
-  clickOnRetweet(postId:any){
-    console.log(postId)
-    this.apiService.clickOnRT(postId).subscribe(
-      value =>{
-        this.getPosts();
-      }, error=>{
-        console.log(error);
-      })
-
-
-  }
-
-  clickOnLike(postId:any){
-    console.log(postId)
-    this.apiService.clickOnLike(postId).subscribe(
-      value =>{
-        this.getPosts();
-
-      }, error=>{
-        console.log(error);
-      })
-
-  }
-
-
-
-
 }

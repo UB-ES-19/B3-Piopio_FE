@@ -58,13 +58,17 @@ export class ApiService {
     }, );
   }
 
-  clickOnLike(postId:any){
-    return this.httpClient.get<any>(`${this.usersEndPoint}like/${postId}`, {headers : this.httpHeaders});
+  clickOnLike(postId: number) {
+    return this.httpClient.post<any>(`${this.usersEndPoint}like/${postId}/`, {headers : this.httpHeaders});
   }
 
-  clickOnRT(postId:any){
-    return this.httpClient.get<any>(`${this.usersEndPoint}retweet/${postId}`, {headers : this.httpHeaders});
+  clickOnRT(postId: number) {
+    return this.httpClient.post<any>(`${this.usersEndPoint}retweet/${postId}/`, {headers : this.httpHeaders});
 
+  }
+
+  getPost(id: number) {
+    return this.httpClient.get<any>(`${this.postsEndPoint}${id}`, {headers : this.httpHeaders});
   }
 
   deleteMedia(publicId: string, deleteToken: string) {

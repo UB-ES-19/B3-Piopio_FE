@@ -79,7 +79,9 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   onSelectImage(event) {
-    this.media.push(...event.addedFiles);
+    if(this.media.length < 1) {
+      this.media.push(...event.addedFiles);
+    }
   }
 
   toggleProfileMediaUpload(type?: string) {
