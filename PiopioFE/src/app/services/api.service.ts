@@ -20,6 +20,7 @@ export class ApiService {
   }
 
   getPosts(id: any, limit: number, offset: number){
+    console.log(id)
     return this.httpClient.get<any>(`${this.usersEndPoint}${id}/posts/?limit=${limit}&offset=${offset}`, {headers : this.httpHeaders});
   }
 
@@ -36,11 +37,22 @@ export class ApiService {
   }
 
   searchUser(username: string) {
-    return this.httpClient.get<any>(`${this.usersEndPoint}search/?username=${username}`, {headers : this.httpHeaders});
+    if(username.substring(0,1) == '#'){
+      username = username.substring(1,username.length);
+      return this.httpClient.get<any>(`${this.usersEndPoint}search/?username=%23${username}`, {headers : this.httpHeaders});
+    }else{
+      return this.httpClient.get<any>(`${this.usersEndPoint}search/?username=${username}`, {headers : this.httpHeaders});
+    }
   }
 
   searchPosts(content: string) {
-    return this.httpClient.get<any>(`${this.postsEndPoint}search/?content=${content}`, {headers : this.httpHeaders});
+    if(content.substring(0,1) == '#'){
+      content = content.substring(1,content.length);
+      return this.httpClient.get<any>(`${this.postsEndPoint}search/?content=%23${content}`, {headers : this.httpHeaders});
+    }else{
+      return this.httpClient.get<any>(`${this.postsEndPoint}search/?content=${content}`, {headers : this.httpHeaders});
+    }
+  
   }
 
   followUser(username: string) {

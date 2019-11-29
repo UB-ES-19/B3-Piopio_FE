@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../services/api.service';
 import {AuthService} from '../auth/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-posts',
@@ -17,7 +17,7 @@ export class ListPostsComponent implements OnInit {
   username: string;
   currentUser: any;
 
-  constructor(private apiService: ApiService, private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private apiService: ApiService, private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.username = this.route.snapshot.paramMap.get('username');
@@ -25,20 +25,9 @@ export class ListPostsComponent implements OnInit {
   }
 
   getPosts() {
-    if (this.username) {
-      console.log(this.username)
-      this.apiService.getProfile(this.username).subscribe(other => {
-        this.apiService.getFollowedUserPosts(other.id, this.limit, this.offset).subscribe(
-          value => {
-            console.log(value);
-            this.nextUrl = value.next;
-            this.posts = this.posts.concat(value.results);
-            this.offset = this.posts.length;
-          }, error => {
-            console.log(error);
-          });
-      });
-    } else {
+    console.log(this.router.url)
+    if(this.router.url == '/home'){
+      console.log('home')
       this.apiService.getMyProfile().subscribe(me => {
         this.currentUser = me;
         this.apiService.getFollowedUserPosts(me.id, this.limit, this.offset).subscribe(
@@ -51,7 +40,36 @@ export class ListPostsComponent implements OnInit {
             console.log(error);
           });
       });
+    }else{
+      if (this.username) {
+        console.log(this.username)
+        this.apiService.getProfile(this.username).subscribe(other => {
+          this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
+            value => {
+              console.log(value);
+              this.nextUrl = value.next;
+              this.posts = this.posts.concat(value.results);
+              this.offset = this.posts.length;
+            }, error => {
+              console.log(error);
+            });
+        });
+      } else {
+        this.apiService.getMyProfile().subscribe(me => {
+          this.currentUser = me;
+          this.apiService.getPosts(me.id, this.limit, this.offset).subscribe(
+            value => {
+              console.log(value);
+              this.nextUrl = value.next;
+              this.posts = this.posts.concat(value.results);
+              this.offset = this.posts.length;
+            }, error => {
+              console.log(error);
+            });
+        });
+      }
     }
+    
 
 
   }
