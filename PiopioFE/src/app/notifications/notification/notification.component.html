@@ -1,0 +1,11 @@
+<div class="card" [ngStyle]="{ 'background-color': notification.notified ? '#ebebeb' : 'white'}">
+  <div class="card-content">
+    <div class="content" [ngStyle]="{ 'color': notification.notified ? '#818181' : 'black'}">
+      User <a routerLink="/{{ notification.user_mentioning.username }}"> @{{ notification.user_mentioning.username }} </a> has mentioned you in a post.
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a class="card-footer-item" *ngIf="!notification.notified" (click)="markAsRead()">Mark as read</a>
+    <a href="#" class="card-footer-item">Go to post</a>
+  </footer>
+</div>

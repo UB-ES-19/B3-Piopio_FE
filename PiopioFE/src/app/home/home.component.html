@@ -11,106 +11,78 @@
         <!-- Feed menu -->
         <div class="feed-menu-v1">
           <ul class="main-menu">
-            <li class="is-active">
-              <a>
+            <li [routerLinkActive]="'is-active'">
+              <a routerLink="/home" >
                 <i data-feather="activity"></i>
                 <span>Feed</span>
-                <span class="close-icon">
-                                    <i data-feather="chevron-right"></i>
-                                </span>
               </a>
-              <ul class="submenu">
-                <li class="is-subactive">
-                  <a>Trending <span class="tag">4</span></a>
-                </li>
-                <li>
-                  <a>Popular</a>
-                </li>
-                <li>
-                  <a>Following</a>
-                </li>
-              </ul>
             </li>
-            <li>
-              <a>
+            <li [routerLinkActive]="'is-active'">
+              <a routerLink="/notifications">
                 <i data-feather="help-circle"></i>
-                <span>Questions</span>
-                <span class="close-icon">
-                                    <i data-feather="chevron-right"></i>
-                                </span>
+                <span>Notifications</span>
               </a>
-              <ul class="submenu">
-                <li>
-                  <a>Home</a>
-                </li>
-                <li>
-                  <a>My Questions</a>
-                </li>
-                <li>
-                  <a>Popular</a>
-                </li>
-              </ul>
             </li>
-            <li>
-              <a>
-                <i data-feather="youtube"></i>
-                <span>Videos</span>
-                <span class="close-icon">
-                                    <i data-feather="chevron-right"></i>
-                                </span>
-              </a>
-              <ul class="submenu">
-                <li>
-                  <a>Home<span class="tag">7</span></a>
-                </li>
-                <li>
-                  <a>Suggested</a>
-                </li>
-                <li>
-                  <a>My Channel</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>
-                <i data-feather="shopping-cart"></i>
-                <span>Shopping</span>
-                <span class="close-icon">
-                                    <i data-feather="chevron-right"></i>
-                                </span>
-              </a>
-              <ul class="submenu">
-                <li>
-                  <a>Trending<span class="tag">2</span></a>
-                </li>
-                <li>
-                  <a>Popular<span class="tag">5</span></a>
-                </li>
-                <li>
-                  <a>My Products</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>
-                <i data-feather="music"></i>
-                <span>Music</span>
-                <span class="close-icon">
-                                    <i data-feather="chevron-right"></i>
-                                </span>
-              </a>
-              <ul class="submenu">
-                <li>
-                  <a>My Products</a>
-                </li>
-                <li>
-                  <a>Trending<span class="tag">6</span></a>
-                </li>
-                <li>
-                  <a>Popular</a>
-                </li>
-              </ul>
-            </li>
+<!--            <li>-->
+<!--              <a>-->
+<!--                <i data-feather="youtube"></i>-->
+<!--                <span>Videos</span>-->
+<!--                <span class="close-icon">-->
+<!--                                    <i data-feather="chevron-right"></i>-->
+<!--                                </span>-->
+<!--              </a>-->
+<!--              <ul class="submenu">-->
+<!--                <li>-->
+<!--                  <a>Home<span class="tag">7</span></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a>Suggested</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a>My Channel</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a>-->
+<!--                <i data-feather="shopping-cart"></i>-->
+<!--                <span>Shopping</span>-->
+<!--                <span class="close-icon">-->
+<!--                                    <i data-feather="chevron-right"></i>-->
+<!--                                </span>-->
+<!--              </a>-->
+<!--              <ul class="submenu">-->
+<!--                <li>-->
+<!--                  <a>Trending<span class="tag">2</span></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a>Popular<span class="tag">5</span></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a>My Products</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a>-->
+<!--                <i data-feather="music"></i>-->
+<!--                <span>Music</span>-->
+<!--                <span class="close-icon">-->
+<!--                                    <i data-feather="chevron-right"></i>-->
+<!--                                </span>-->
+<!--              </a>-->
+<!--              <ul class="submenu">-->
+<!--                <li>-->
+<!--                  <a>My Products</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a>Trending<span class="tag">6</span></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a>Popular</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </li>-->
           </ul>
         </div>
       </div>
@@ -119,19 +91,13 @@
       <!-- Middle column -->
       <div class="column is-6">
 
-        <!-- Publishing Area -->
-        <!-- /includes/pages/feed/compose-card.html -->
-        <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
-
-        <!-- Post 1 -->
-        <!-- /includes/pages/feed/posts/feed-post1.html -->
-        <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
-
-        <!-- Load more posts -->
-        <div class=" load-more-wrap has-text-centered">
-          <a href="#" class="load-more-button">Load More</a>
+        <div *ngIf="router.url == '/home'">
+          <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
+          <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
         </div>
-        <!-- /Load more posts -->
+        <div *ngIf="router.url == '/notifications'">
+          <app-notifications></app-notifications>
+        </div>
 
       </div>
       <!-- /Middle column -->

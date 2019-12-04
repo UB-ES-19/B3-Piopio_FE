@@ -24,6 +24,8 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { ProfileHeaderComponent } from './profile/profile-header/profile-header.component';
 import { PostCardComponent } from './list-posts/post-card/post-card.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationComponent } from './notifications/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { PostCardComponent } from './list-posts/post-card/post-card.component';
     ProfileEditComponent,
     ProfileHeaderComponent,
     PostCardComponent,
+    NotificationsComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,

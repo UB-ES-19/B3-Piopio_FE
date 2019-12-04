@@ -1,0 +1,8 @@
+<div *ngIf="notifications">
+  <div *ngFor="let notification of notifications.results" >
+    <app-notification [notification]="notification"></app-notification>
+  </div>
+</div>
+
+
+
