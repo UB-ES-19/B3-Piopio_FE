@@ -46,13 +46,8 @@ export class ApiService {
   }
 
   searchPosts(content: string) {
-    if(content.substring(0,1) == '#'){
-      content = content.substring(1,content.length);
-      return this.httpClient.get<any>(`${this.postsEndPoint}search/?content=%23${content}`, {headers : this.httpHeaders});
-    }else{
-      return this.httpClient.get<any>(`${this.postsEndPoint}search/?content=${content}`, {headers : this.httpHeaders});
-    }
-  
+    content = content.replace('#', '%23');
+    return this.httpClient.get<any>(`${this.postsEndPoint}search/?content=${content}`, {headers : this.httpHeaders});
   }
 
   followUser(username: string) {
@@ -89,5 +84,13 @@ export class ApiService {
 
   editUserProfile(id: number, data: any) {
     return this.httpClient.put(`${this.usersEndPoint}${id}/`, {profile: data}, {headers : this.httpHeaders});
+  }
+
+  getNotifications() {
+    return this.httpClient.get('http://localhost:8000/api/users/notifications/', {headers: this.httpHeaders});
+  }
+
+  readNotification(id: number) {
+    return this.httpClient.post('http://localhost:8000/api/notifications/notified/', {post: id}, {headers: this.httpHeaders});
   }
 }

@@ -12,10 +12,37 @@ export class PostCardComponent implements OnInit {
   post: any;
   @Input()
   currentUser: any;
+  mentions: string[] = [];
+  newContent: string[] = [];
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    if (this.post) {
+      // const matches = this.extractMentions(this.post.content);
+      // if (matches) {
+      //   this.mentions = matches.filter((elem, index, self) => {
+      //     return index === self.indexOf(elem);
+      //   });
+      // }
+      if (this.post.mentions.length > 0) {
+        this.post.mentions.forEach(mention => {
+          this.mentions.push('@' + mention.username);
+        });
+      }
+      const textArr = this.post.content.split(' ');
+      textArr.forEach(text => {
+        const match = this.mentions.filter((item) => {
+          return item === text;
+        });
+        if (match.length > 0) {
+          this.newContent.push(`<a href="/${text.substr(1, text.length)}">${text}</a>`);
+        } else {
+          this.newContent.push(text);
+        }
+      });
+      this.post.content = this.newContent.join(' ');
+    }
   }
 
   clickOnRetweet() {

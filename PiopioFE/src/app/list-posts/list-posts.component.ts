@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from '../services/api.service';
-import {AuthService} from '../auth/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -17,61 +16,50 @@ export class ListPostsComponent implements OnInit {
   username: string;
   currentUser: any;
 
-  constructor(private apiService: ApiService, private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.username = this.route.snapshot.paramMap.get('username');
-    this.getPosts();
+    this.apiService.getMyProfile().subscribe(me => {
+      this.currentUser = me;
+      this.getPosts();
+    });
+  }
+
+  private updatePosts(value: any) {
+    console.log(value);
+    this.nextUrl = value.next;
+    this.posts = this.posts.concat(value.results);
+    this.offset = this.posts.length;
   }
 
   getPosts() {
-    console.log(this.router.url)
-    if(this.router.url == '/home'){
-      console.log('home')
-      this.apiService.getMyProfile().subscribe(me => {
-        this.currentUser = me;
-        this.apiService.getFollowedUserPosts(me.id, this.limit, this.offset).subscribe(
-          value => {
-            console.log(value);
-            this.nextUrl = value.next;
-            this.posts = this.posts.concat(value.results);
-            this.offset = this.posts.length;
-          }, error => {
-            console.log(error);
-          });
-      });
-    }else{
+    if (this.router.url == '/home') {
+      this.apiService.getFollowedUserPosts(this.currentUser.id, this.limit, this.offset).subscribe(
+        value => {
+          this.updatePosts(value);
+        }, error => {
+          console.log(error);
+        });
+    } else {
       if (this.username) {
-        console.log(this.username)
         this.apiService.getProfile(this.username).subscribe(other => {
           this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
             value => {
-              console.log(value);
-              this.nextUrl = value.next;
-              this.posts = this.posts.concat(value.results);
-              this.offset = this.posts.length;
+              this.updatePosts(value);
             }, error => {
               console.log(error);
             });
         });
       } else {
-        this.apiService.getMyProfile().subscribe(me => {
-          this.currentUser = me;
-          this.apiService.getPosts(me.id, this.limit, this.offset).subscribe(
-            value => {
-              console.log(value);
-              this.nextUrl = value.next;
-              this.posts = this.posts.concat(value.results);
-              this.offset = this.posts.length;
-            }, error => {
-              console.log(error);
-            });
-        });
+        this.apiService.getPosts(this.currentUser.id, this.limit, this.offset).subscribe(
+          value => {
+            this.updatePosts(value);
+          }, error => {
+            console.log(error);
+          });
       }
     }
-    
-
-
   }
 
   onScroll() {

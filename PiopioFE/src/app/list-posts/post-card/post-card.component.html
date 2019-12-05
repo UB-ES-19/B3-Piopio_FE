@@ -22,7 +22,7 @@
       <!-- Post body text -->
       <div class="post-text">
         <h4 class="card-title mt-3"></h4>
-        <p>{{ post.content }}</p>
+        <p [innerHTML]="post.content"></p>
       </div>
 
       <div class="videos-wrapper is-home" *ngIf="post.type == 'video' && post.media?.length == 1">
