@@ -1,4 +1,4 @@
-<div class="card is-post">
+<div (click)="goToDetail()" class="card is-post"  style="cursor: pointer">
   <!-- Main wrap -->
   <div class="content-wrap">
     <!-- Post header -->
@@ -22,7 +22,7 @@
       <!-- Post body text -->
       <div class="post-text">
         <h4 class="card-title mt-3"></h4>
-        <p [innerHTML]="post.content"></p>
+        <p [innerHTML]="post.content" [ngStyle]="{ 'font-size' : focus ? '20px': '' , 'color' : focus ? 'black': ''}"></p>
       </div>
 
       <div class="videos-wrapper is-home" *ngIf="post.type == 'video' && post.media?.length == 1">

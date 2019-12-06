@@ -1,0 +1,14 @@
+<div *ngIf="parent?.content">
+  <app-post-card [post]="parent"></app-post-card>
+</div>
+
+<div *ngIf="post">
+  <app-post-card [post]="post" [focus]="true"></app-post-card>
+</div>
+
+<div *ngIf="comments?.length > 0">
+  <div *ngFor="let comment of comments" >
+    <app-post-card [post]="comment"></app-post-card>
+  </div>
+</div>
+

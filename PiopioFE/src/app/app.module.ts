@@ -26,6 +26,9 @@ import { ProfileHeaderComponent } from './profile/profile-header/profile-header.
 import { PostCardComponent } from './list-posts/post-card/post-card.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notifications/notification/notification.component';
+import { ListPostsHomeComponent } from './list-posts/list-posts-home/list-posts-home.component';
+import { ListPostsProfileComponent } from './list-posts/list-posts-profile/list-posts-profile.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { NotificationComponent } from './notifications/notification/notification
     PostCardComponent,
     NotificationsComponent,
     NotificationComponent,
+    ListPostsHomeComponent,
+    ListPostsProfileComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,
