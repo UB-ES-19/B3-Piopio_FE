@@ -28,8 +28,10 @@
       </div>
       <div class="menu-end">
         <div *ngIf="!myProfile">
-          <a *ngIf="!following" (click)="follow(userProfile.username)" class="button has-min-width">Follow</a>
-          <a *ngIf="following" (click)="unfollow(userProfile.username)" class="button has-min-width">Unfollow</a>
+          <a *ngIf="!following && !userProfile.user_blocked && !userProfile.other_blocked" (click)="follow(userProfile.username)" class="button has-min-width">Follow</a>
+          <a *ngIf="following && !userProfile.user_blocked && !userProfile.other_blocked" (click)="unfollow(userProfile.username)" class="button has-min-width">Unfollow</a>
+          <a *ngIf="userProfile.user_blocked" class="button has-min-width" (click)="unblockUser()">Unblock</a>
+          <a *ngIf="!userProfile.user_blocked" class="button has-min-width" (click)="blockUser()">Block</a>
         </div>
         <a routerLink="/edit-profile" class="button has-min-width" *ngIf="router.url == '/profile'">Edit profile</a>
         <a routerLink="/profile" class="button has-min-width" *ngIf="router.url == '/edit-profile'">Profile</a>

@@ -97,4 +97,12 @@ export class ApiService {
   getPostDetail(id: string) {
     return this.httpClient.get<any>(`${this.postsEndPoint}details/${id}`, {headers : this.httpHeaders});
   }
+
+  blockUser(id: string) {
+    return this.httpClient.post<any>(`${this.usersEndPoint}${id}/block/`, {} , {headers : this.httpHeaders});
+  }
+
+  unblockUser(id: string) {
+    return this.httpClient.post<any>(`${this.usersEndPoint}${id}/unblock/`, {} , {headers : this.httpHeaders});
+  }
 }
