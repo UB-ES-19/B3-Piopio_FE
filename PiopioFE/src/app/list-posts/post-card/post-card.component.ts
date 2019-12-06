@@ -1,5 +1,7 @@
 import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
 import {ApiService} from '../../services/api.service';
+import {generateAnalysis} from '@angular/compiler-cli/src/ngtsc/indexer/src/transform';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
@@ -11,38 +13,38 @@ export class PostCardComponent implements OnInit {
   @Input()
   post: any;
   @Input()
-  currentUser: any;
+  focus = false;
   mentions: string[] = [];
   newContent: string[] = [];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     if (this.post) {
-      // const matches = this.extractMentions(this.post.content);
-      // if (matches) {
-      //   this.mentions = matches.filter((elem, index, self) => {
-      //     return index === self.indexOf(elem);
-      //   });
-      // }
-      if (this.post.mentions.length > 0) {
-        this.post.mentions.forEach(mention => {
-          this.mentions.push('@' + mention.username);
-        });
-      }
-      const textArr = this.post.content.split(' ');
-      textArr.forEach(text => {
-        const match = this.mentions.filter((item) => {
-          return item === text;
-        });
-        if (match.length > 0) {
-          this.newContent.push(`<a href="/${text.substr(1, text.length)}">${text}</a>`);
-        } else {
-          this.newContent.push(text);
+      if(this.post.mentions) {
+        if (this.post.mentions.length > 0) {
+          this.post.mentions.forEach(mention => {
+            this.mentions.push('@' + mention.username);
+          });
         }
-      });
-      this.post.content = this.newContent.join(' ');
+        const textArr = this.post.content.split(' ');
+        textArr.forEach(text => {
+          const match = this.mentions.filter((item) => {
+            return item === text;
+          });
+          if (match.length > 0) {
+            this.newContent.push(`<a href="/${text.substr(1, text.length)}">${text}</a>`);
+          } else {
+            this.newContent.push(text);
+          }
+        });
+        this.post.content = this.newContent.join(' ');
+      }
     }
+  }
+
+  goToDetail() {
+    this.router.navigate(['/post/', this.post.id]);
   }
 
   clickOnRetweet() {

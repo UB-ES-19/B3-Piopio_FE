@@ -16,17 +16,12 @@ export class ListPostsComponent implements OnInit {
   username: string;
   currentUser: any;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(protected apiService: ApiService) { }
 
   ngOnInit() {
-    this.username = this.route.snapshot.paramMap.get('username');
-    this.apiService.getMyProfile().subscribe(me => {
-      this.currentUser = me;
-      this.getPosts();
-    });
   }
 
-  private updatePosts(value: any) {
+  updatePosts(value: any) {
     console.log(value);
     this.nextUrl = value.next;
     this.posts = this.posts.concat(value.results);
@@ -34,32 +29,6 @@ export class ListPostsComponent implements OnInit {
   }
 
   getPosts() {
-    if (this.router.url == '/home') {
-      this.apiService.getFollowedUserPosts(this.currentUser.id, this.limit, this.offset).subscribe(
-        value => {
-          this.updatePosts(value);
-        }, error => {
-          console.log(error);
-        });
-    } else {
-      if (this.username) {
-        this.apiService.getProfile(this.username).subscribe(other => {
-          this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
-            value => {
-              this.updatePosts(value);
-            }, error => {
-              console.log(error);
-            });
-        });
-      } else {
-        this.apiService.getPosts(this.currentUser.id, this.limit, this.offset).subscribe(
-          value => {
-            this.updatePosts(value);
-          }, error => {
-            console.log(error);
-          });
-      }
-    }
   }
 
   onScroll() {
@@ -70,6 +39,7 @@ export class ListPostsComponent implements OnInit {
 
   addPost() {
     this.apiService.getMyPosts(1, 0).subscribe(value => {
+      console.log(value);
       this.posts.unshift(value.results[0]);
       this.offset = this.posts.length;
     }, error => {

@@ -74,7 +74,7 @@ export class ApiService {
 
   }
 
-  getPost(id: number) {
+  getPost(id: string) {
     return this.httpClient.get<any>(`${this.postsEndPoint}${id}`, {headers : this.httpHeaders});
   }
 
@@ -92,5 +92,9 @@ export class ApiService {
 
   readNotification(id: number) {
     return this.httpClient.post('http://localhost:8000/api/notifications/notified/', {post: id}, {headers: this.httpHeaders});
+  }
+
+  getPostDetail(id: string) {
+    return this.httpClient.get<any>(`${this.postsEndPoint}details/${id}`, {headers : this.httpHeaders});
   }
 }
