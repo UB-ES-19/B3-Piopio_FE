@@ -106,6 +106,7 @@ export class ProfileHeaderComponent implements OnInit {
     this.apiService.followUser(username).subscribe(
       value => {
         this.following = true;
+        this.userProfile.follower_count += 1;
       }, error => {
         console.log(error);
       }
@@ -116,9 +117,22 @@ export class ProfileHeaderComponent implements OnInit {
     this.apiService.unfollowUser(username).subscribe(
       value => {
         this.following = false;
+        this.userProfile.follower_count -= 1;
       }, error => {
         console.log(error);
       }
     );
+  }
+
+  blockUser() {
+    this.apiService.blockUser(this.userProfile.id).subscribe(value => {
+      this.userProfile.user_blocked = true;
+    });
+  }
+
+  unblockUser() {
+    this.apiService.unblockUser(this.userProfile.id).subscribe(value => {
+      this.userProfile.user_blocked = false;
+    });
   }
 }
