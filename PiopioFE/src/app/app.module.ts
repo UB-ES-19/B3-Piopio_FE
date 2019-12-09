@@ -26,6 +26,7 @@ import { ProfileHeaderComponent } from './profile/profile-header/profile-header.
 import { PostCardComponent } from './list-posts/post-card/post-card.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notifications/notification/notification.component';
+import { TrendingTopicsComponent } from './home/trending-topics/trending-topics.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NotificationComponent } from './notifications/notification/notification
     PostCardComponent,
     NotificationsComponent,
     NotificationComponent,
+    TrendingTopicsComponent,
   ],
   imports: [
     BrowserModule,

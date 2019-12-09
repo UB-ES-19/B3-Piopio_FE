@@ -1,0 +1,23 @@
+<div class="card is-post">
+    <!-- Main wrap -->
+    <div class="content-wrap">
+        <!-- Card header -->
+        <div class="card-heading">
+            <b>Trending topics:</b>
+        </div>
+        <!-- /Card header -->
+        <!-- Card body -->
+        <div class="card-body" style="margin-bottom: 20px;">
+            <div *ngFor="let topic of topics" >
+                <!-- Card body text -->
+                <div class="post-text" style="margin-bottom: 5px;">
+                    <a href="/search?username={{topic.hashtag}}"><h4 class="card-title mt-3" style="font-weight: bold; color: #e74c3c;">{{topic.hashtag}}</h4></a>
+                    <p>{{topic.count}} PioPios</p>
+                </div>
+            </div>
+        <!-- /Card body -->
+        </div>
+    <!-- /Main wrap -->
+    </div>
+</div>
+      
