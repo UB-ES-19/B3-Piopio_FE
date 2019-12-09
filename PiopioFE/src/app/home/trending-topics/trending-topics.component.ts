@@ -8,24 +8,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class TrendingTopicsComponent implements OnInit {
 
-  topics = [
-    {
-      "hashtag": "trending",
-      "count": 2
-  },
-  {
-      "hashtag": "topic",
-      "count": 2
-  },
-  {
-    "hashtag": "lol",
-    "count": 2
-},
-{
-    "hashtag": "juas",
-    "count": 2
-}
-  ];
+  topics = [];
 
   constructor(private apiService: ApiService) { }
 
