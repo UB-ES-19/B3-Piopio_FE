@@ -29,6 +29,7 @@ import { NotificationComponent } from './notifications/notification/notification
 import { ListPostsHomeComponent } from './list-posts/list-posts-home/list-posts-home.component';
 import { ListPostsProfileComponent } from './list-posts/list-posts-profile/list-posts-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { CommentBoxComponent } from './comment-box/comment-box.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     ListPostsHomeComponent,
     ListPostsProfileComponent,
     PostDetailComponent,
+    CommentBoxComponent,
   ],
   imports: [
     BrowserModule,
