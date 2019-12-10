@@ -10,7 +10,7 @@
         <div class="compose">
           <div class="compose-form">
             <div class="control">
-              <textarea id="publish" formControlName='content' class="textarea" rows="3" placeholder="Write something about you..."></textarea>
+              <textarea id="publish" formControlName='content' class="textarea" rows="3" placeholder="Write something about you..." [mention]="users" [mentionConfig]="{triggerChar:'@', maxItems:10, labelKey:'username'}" (searchTerm)="textChange($event)"></textarea>
             </div>
           </div>
         </div>

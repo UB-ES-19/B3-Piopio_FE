@@ -13,19 +13,10 @@ export class ListPostsComponent implements OnInit {
   limit = 5;
   offset = 0;
   nextUrl: string;
-  username: string;
-  topic: string;
-  currentUser: any;
 
   constructor(protected apiService: ApiService) { }
 
   ngOnInit() {
-    this.username = this.route.snapshot.paramMap.get('username');
-    this.topic = this.route.snapshot.paramMap.get('topic');
-    this.apiService.getMyProfile().subscribe(me => {
-      this.currentUser = me;
-      this.getPosts();
-    });
   }
 
   updatePosts(value: any) {
@@ -36,39 +27,6 @@ export class ListPostsComponent implements OnInit {
   }
 
   getPosts() {
-    if (this.router.url == '/home') {
-      this.apiService.getFollowedUserPosts(this.currentUser.id, this.limit, this.offset).subscribe(
-        value => {
-          this.updatePosts(value);
-        }, error => {
-          console.log(error);
-        });
-    } else {
-      if (this.username) {
-        this.apiService.getProfile(this.username).subscribe(other => {
-          this.apiService.getPosts(other.id, this.limit, this.offset).subscribe(
-            value => {
-              this.updatePosts(value);
-            }, error => {
-              console.log(error);
-            });
-        });
-      } else if (this.topic) {
-        this.apiService.searchPosts(this.topic).subscribe(
-          value=> {
-            this.updatePosts(value);
-          }, error => {
-            console.log(error);
-          });
-      } else {
-        this.apiService.getPosts(this.currentUser.id, this.limit, this.offset).subscribe(
-          value => {
-            this.updatePosts(value);
-          }, error => {
-            console.log(error);
-          });
-      }
-    }
   }
 
   onScroll() {

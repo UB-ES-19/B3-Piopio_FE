@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from '../../services/api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-notification',
@@ -11,7 +12,7 @@ export class NotificationComponent implements OnInit {
   @Input()
   notification: any;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,4 +25,7 @@ export class NotificationComponent implements OnInit {
     });
   }
 
+  goToPost() {
+    this.router.navigate(['/post', this.notification.post.id]);
+  }
 }

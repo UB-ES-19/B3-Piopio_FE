@@ -19,6 +19,7 @@ export class PublishPostComponent implements OnInit {
   mediaUrls: any[] = [];
   previews: any[] = [];
   type = 'text';
+  users: any[] = [];
 
   constructor(private apiService: ApiService,  private formBuilder: FormBuilder) { }
 
@@ -161,5 +162,14 @@ export class PublishPostComponent implements OnInit {
   toggleVideoUpload() {
     $('.video-upload-modal').toggleClass('is-active');
     this.videos = [];
+  }
+
+  textChange(event) {
+
+    this.apiService.searchUser(event).subscribe(value => {
+      if (value.results.length > 0) {
+        this.users = value.results;
+      }
+    });
   }
 }

@@ -30,6 +30,8 @@ import { TrendingTopicsComponent } from './home/trending-topics/trending-topics.
 import { ListPostsHomeComponent } from './list-posts/list-posts-home/list-posts-home.component';
 import { ListPostsProfileComponent } from './list-posts/list-posts-profile/list-posts-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { MentionModule } from 'angular-mentions';
+import { ListPostsTopicsComponent } from './list-posts/list-posts-topics/list-posts-topics.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     ListPostsHomeComponent,
     ListPostsProfileComponent,
     PostDetailComponent,
+    ListPostsTopicsComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     InfiniteScrollModule,
     NgxDropzoneModule,
     DateValueAccessorModule,
+    MentionModule,
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'dt5t5tmbw' } as CloudinaryConfiguration),
   ],
   providers: [],
