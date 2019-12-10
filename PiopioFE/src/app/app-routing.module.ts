@@ -13,7 +13,6 @@ import {ProfileEditComponent} from './profile/profile-edit/profile-edit.componen
 
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
-  // (Solo pruebas) Para ver /home hay que cambiar AuthUsersGuard por AnonUsersGuard
   { path: 'home', component: HomeComponent, canActivate: [AuthUsersGuard]},
   { path: 'notifications', component: HomeComponent, canActivate: [AuthUsersGuard]},
   { path: 'trending/:topic', component: HomeComponent, canActivate: [AuthUsersGuard]},
@@ -22,6 +21,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent , canActivate: [AuthUsersGuard]},
   { path: 'edit-profile', component: ProfileComponent , canActivate: [AuthUsersGuard]},
   { path: 'search', component: SearchResultComponent , canActivate: [AuthUsersGuard]},
+  { path: 'post/:post_id', component: HomeComponent , canActivate: [AuthUsersGuard]},
   { path: ':username', component: ProfileComponent, canActivate: [AuthUsersGuard]},
   { path: '', component: LandingPageComponent, canActivate: [AnonUsersGuard]},
 ];

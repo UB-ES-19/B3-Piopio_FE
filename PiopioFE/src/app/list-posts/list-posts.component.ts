@@ -17,7 +17,7 @@ export class ListPostsComponent implements OnInit {
   topic: string;
   currentUser: any;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(protected apiService: ApiService) { }
 
   ngOnInit() {
     this.username = this.route.snapshot.paramMap.get('username');
@@ -28,7 +28,7 @@ export class ListPostsComponent implements OnInit {
     });
   }
 
-  private updatePosts(value: any) {
+  updatePosts(value: any) {
     console.log(value);
     this.nextUrl = value.next;
     this.posts = this.posts.concat(value.results);
@@ -79,6 +79,7 @@ export class ListPostsComponent implements OnInit {
 
   addPost() {
     this.apiService.getMyPosts(1, 0).subscribe(value => {
+      console.log(value);
       this.posts.unshift(value.results[0]);
       this.offset = this.posts.length;
     }, error => {

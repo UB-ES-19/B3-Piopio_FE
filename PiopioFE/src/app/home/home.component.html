@@ -93,13 +93,16 @@
 
         <div *ngIf="router.url == '/home'">
           <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
-          <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
+          <app-list-posts-home #listPostsComponent class="w-100"></app-list-posts-home>
         </div>
         <div *ngIf="topic">
           <app-list-posts #listPostsComponent class="w-100"></app-list-posts>
         </div>
         <div *ngIf="router.url == '/notifications'">
           <app-notifications></app-notifications>
+        </div>
+        <div *ngIf="route.routeConfig.path == 'post/:post_id'">
+          <app-post-detail></app-post-detail>
         </div>
 
       </div>

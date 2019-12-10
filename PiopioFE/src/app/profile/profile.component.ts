@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
           this.apiService.getProfile(this.username).subscribe(
             other => {
               this.userProfile = other;
+              console.log(this.userProfile);
               this.myProfile = false;
               if (other.following.includes(this.userId)) {
                 this.imFollower = true;

@@ -1,8 +1,8 @@
-<div class="card is-post">
+<div class="card is-post" style="margin: 0;" >
   <!-- Main wrap -->
   <div class="content-wrap">
     <!-- Post header -->
-    <div class="card-heading">
+    <div class="card-heading" (click)="goToDetail()" style="cursor: pointer">
       <!-- User meta -->
       <div class="user-block">
         <div class="image">
@@ -18,11 +18,11 @@
     <!-- /Post header -->
 
     <!-- Post body -->
-    <div class="card-body">
+    <div class="card-body" (click)="goToDetail()" style="cursor: pointer">
       <!-- Post body text -->
       <div class="post-text">
         <h4 class="card-title mt-3"></h4>
-        <p [innerHTML]="post.content"></p>
+        <p [innerHTML]="post.content" [ngStyle]="{ 'font-size' : focus ? '20px': '' , 'color' : focus ? 'black': ''}"></p>
       </div>
 
       <div class="videos-wrapper is-home" *ngIf="post.type == 'video' && post.media?.length == 1">
