@@ -14,12 +14,14 @@ export class ListPostsComponent implements OnInit {
   offset = 0;
   nextUrl: string;
   username: string;
+  topic: string;
   currentUser: any;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.username = this.route.snapshot.paramMap.get('username');
+    this.topic = this.route.snapshot.paramMap.get('topic');
     this.apiService.getMyProfile().subscribe(me => {
       this.currentUser = me;
       this.getPosts();
@@ -51,6 +53,13 @@ export class ListPostsComponent implements OnInit {
               console.log(error);
             });
         });
+      } else if (this.topic) {
+        this.apiService.searchPosts(this.topic).subscribe(
+          value=> {
+            this.updatePosts(value);
+          }, error => {
+            console.log(error);
+          });
       } else {
         this.apiService.getPosts(this.currentUser.id, this.limit, this.offset).subscribe(
           value => {
