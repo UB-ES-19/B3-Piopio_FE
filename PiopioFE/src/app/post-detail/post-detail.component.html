@@ -18,7 +18,7 @@
 </div>
 
 <div *ngIf="comments?.length > 0">
-  <span style="font-family: 'Helvetica'; margin-left: 5px;"><b>Comments</b></span>
+  <div style="font-family: 'Helvetica'; margin-left: 5px; margin-top: 20px; margin-bottom: 10px;"><b>Comments</b></div>
   <div *ngFor="let comment of comments" >
     <app-post-card [post]="comment"></app-post-card>
   </div>
