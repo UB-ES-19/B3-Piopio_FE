@@ -1,12 +1,24 @@
-<div *ngIf="parent?.content">
-  <app-post-card [post]="parent"></app-post-card>
+<div *ngIf="parent?.content" style="border-left: 8px solid #42A5F5;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);">
+  <div *ngIf="parent?.content">
+    <span class="dot"></span>
+    <app-post-card [post]="parent"></app-post-card>
+  </div>
+
+  <div *ngIf="post">
+    <span class="dot"></span>
+    <app-post-card [post]="post" [focus]="true"></app-post-card>
+  </div>
 </div>
 
-<div *ngIf="post">
+<div *ngIf="post && !parent?.content">
   <app-post-card [post]="post" [focus]="true"></app-post-card>
 </div>
 
 <div *ngIf="comments?.length > 0">
+  <span style="font-family: 'Helvetica'; margin-left: 5px;"><b>Comments</b></span>
   <div *ngFor="let comment of comments" >
     <app-post-card [post]="comment"></app-post-card>
   </div>
