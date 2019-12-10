@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +8,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  topic: string;
+  private sub: any;
+
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.topic = params['topic'];
+    });
   }
-
 }

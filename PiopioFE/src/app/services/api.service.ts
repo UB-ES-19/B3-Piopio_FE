@@ -8,6 +8,7 @@ export class ApiService {
 
   private postsEndPoint = 'http://localhost:8000/api/posts/';
   private usersEndPoint = 'http://localhost:8000/api/users/';
+  private apiEndPoint = 'http://localhost:8000/api/';
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(private httpClient: HttpClient) { }
 
@@ -76,6 +77,10 @@ export class ApiService {
 
   getPost(id: string) {
     return this.httpClient.get<any>(`${this.postsEndPoint}${id}`, {headers : this.httpHeaders});
+  }
+
+  getTrendingTopics() {
+    return this.httpClient.get<any>(`${this.apiEndPoint}trendingtopic`, {headers : this.httpHeaders});
   }
 
   deleteMedia(publicId: string, deleteToken: string) {

@@ -26,6 +26,7 @@ import { ProfileHeaderComponent } from './profile/profile-header/profile-header.
 import { PostCardComponent } from './list-posts/post-card/post-card.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationComponent } from './notifications/notification/notification.component';
+import { TrendingTopicsComponent } from './home/trending-topics/trending-topics.component';
 import { ListPostsHomeComponent } from './list-posts/list-posts-home/list-posts-home.component';
 import { ListPostsProfileComponent } from './list-posts/list-posts-profile/list-posts-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
@@ -48,6 +49,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     PostCardComponent,
     NotificationsComponent,
     NotificationComponent,
+    TrendingTopicsComponent,
     ListPostsHomeComponent,
     ListPostsProfileComponent,
     PostDetailComponent,
