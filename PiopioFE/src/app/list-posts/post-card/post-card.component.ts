@@ -44,7 +44,10 @@ export class PostCardComponent implements OnInit {
   }
 
   goToDetail() {
-    this.router.navigate(['/post/', this.post.id]);
+    this.router.navigate(['/post/', this.post.id])
+      .then(() => {
+        window.location.reload();
+      });
   }
 
   clickOnRetweet() {

@@ -10,6 +10,9 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ListPostsProfileComponent extends ListPostsComponent implements OnInit {
 
+  username: string;
+  currentUser: any;
+
   constructor(protected apiService: ApiService, protected route: ActivatedRoute) {
     super(apiService);
   }

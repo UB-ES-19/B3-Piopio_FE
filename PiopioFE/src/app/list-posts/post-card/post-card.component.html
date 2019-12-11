@@ -1,8 +1,8 @@
-<div (click)="goToDetail()" class="card is-post"  style="cursor: pointer">
+<div class="card is-post" style="margin: 0;" >
   <!-- Main wrap -->
   <div class="content-wrap">
     <!-- Post header -->
-    <div class="card-heading">
+    <div class="card-heading" (click)="goToDetail()" style="cursor: pointer">
       <!-- User meta -->
       <div class="user-block">
         <div class="image">
@@ -18,7 +18,7 @@
     <!-- /Post header -->
 
     <!-- Post body -->
-    <div class="card-body">
+    <div class="card-body" (click)="goToDetail()" style="cursor: pointer">
       <!-- Post body text -->
       <div class="post-text">
         <h4 class="card-title mt-3"></h4>

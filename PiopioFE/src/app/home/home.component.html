@@ -95,6 +95,9 @@
           <app-publish-post [listPostRef]="listPostsComponent"></app-publish-post>
           <app-list-posts-home #listPostsComponent class="w-100"></app-list-posts-home>
         </div>
+        <div *ngIf="route.routeConfig.path == 'trending/:topic'">
+          <app-list-posts-topics></app-list-posts-topics>
+        </div>
         <div *ngIf="router.url == '/notifications'">
           <app-notifications></app-notifications>
         </div>
@@ -107,7 +110,7 @@
 
       <!-- Right side column -->
       <div class="column is-3">
-
+        <app-trending-topics></app-trending-topics>
         <!-- Stories widget -->
         <!-- /includes/widgets/stories-widget.html -->
 
@@ -119,7 +122,6 @@
 
         <!-- New job widget -->
         <!-- /includes/widgets/new-job-widget.html -->
-
       </div>
       <!-- /Right side column -->
     </div>

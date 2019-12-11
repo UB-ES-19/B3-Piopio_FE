@@ -6,6 +6,6 @@
   </div>
   <footer class="card-footer">
     <a class="card-footer-item" *ngIf="!notification.notified" (click)="markAsRead()">Mark as read</a>
-    <a href="#" class="card-footer-item">Go to post</a>
+    <a class="card-footer-item" (click)="goToPost()">Go to post</a>
   </footer>
 </div>

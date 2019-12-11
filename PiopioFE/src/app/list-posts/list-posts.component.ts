@@ -13,8 +13,6 @@ export class ListPostsComponent implements OnInit {
   limit = 5;
   offset = 0;
   nextUrl: string;
-  username: string;
-  currentUser: any;
 
   constructor(protected apiService: ApiService) { }
 
