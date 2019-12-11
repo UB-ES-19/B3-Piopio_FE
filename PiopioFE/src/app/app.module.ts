@@ -30,9 +30,10 @@ import { TrendingTopicsComponent } from './home/trending-topics/trending-topics.
 import { ListPostsHomeComponent } from './list-posts/list-posts-home/list-posts-home.component';
 import { ListPostsProfileComponent } from './list-posts/list-posts-profile/list-posts-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
-import { CommentBoxComponent } from './comment-box/comment-box.component';
+import { CommentBoxComponent } from './publish-post/comment-box/comment-box.component';
 import { MentionModule } from 'angular-mentions';
 import { ListPostsTopicsComponent } from './list-posts/list-posts-topics/list-posts-topics.component';
+import { ListPostsCommentsComponent } from './list-posts/list-posts-comments/list-posts-comments.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ListPostsTopicsComponent } from './list-posts/list-posts-topics/list-po
     PostDetailComponent,
     CommentBoxComponent,
     ListPostsTopicsComponent,
+    ListPostsCommentsComponent,
   ],
   imports: [
     BrowserModule,

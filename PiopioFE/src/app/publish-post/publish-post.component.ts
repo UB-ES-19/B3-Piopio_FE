@@ -21,7 +21,7 @@ export class PublishPostComponent implements OnInit {
   type = 'text';
   users: any[] = [];
 
-  constructor(private apiService: ApiService,  private formBuilder: FormBuilder) { }
+  constructor(protected apiService: ApiService,  protected formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.postForm = this.formBuilder.group({
@@ -30,7 +30,7 @@ export class PublishPostComponent implements OnInit {
     });
   }
 
-  private async readFile(file: File): Promise<string | ArrayBuffer> {
+  protected async readFile(file: File): Promise<string | ArrayBuffer> {
     return new Promise<string | ArrayBuffer>((resolve, reject) => {
       const reader = new FileReader();
 
@@ -74,7 +74,7 @@ export class PublishPostComponent implements OnInit {
       });
   }
 
-  private uploadMedia(mediaArray) {
+  protected uploadMedia(mediaArray) {
     $('.upload-close-button').hide();
     $('.upload-media-button').hide();
     this.previews = [];
@@ -105,7 +105,7 @@ export class PublishPostComponent implements OnInit {
     }
   }
 
-  private showMediaPreview(mediaType: string, mediaUrl: string, publicId: string, deleteToken: string) {
+  protected showMediaPreview(mediaType: string, mediaUrl: string, publicId: string, deleteToken: string) {
     this.previews.push({type: mediaType, url: mediaUrl, public_id: publicId, delete_token: deleteToken});
     if (this.previews.length === 1) { $('.compose-option').hide(); }
     switch (this.type) {

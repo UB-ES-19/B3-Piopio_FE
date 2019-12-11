@@ -17,10 +17,8 @@
   <app-post-card [post]="post" [focus]="true"></app-post-card>
 </div>
 
-<div *ngIf="comments?.length > 0">
-  <div style="font-family: 'Helvetica'; margin-left: 5px; margin-top: 20px; margin-bottom: 10px;"><b>Comments</b></div>
-  <div *ngFor="let comment of comments" >
-    <app-post-card [post]="comment"></app-post-card>
-  </div>
-</div>
+<div style="font-family: 'Helvetica'; margin-left: 5px; margin-top: 20px; margin-bottom: 10px;"><b>Comments</b></div>
+<app-comment-box [listPostRef]="listPostsComponent"></app-comment-box>
+
+<app-list-posts-comments #listPostsComponent></app-list-posts-comments>
 
