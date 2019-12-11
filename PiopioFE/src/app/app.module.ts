@@ -30,6 +30,7 @@ import { TrendingTopicsComponent } from './home/trending-topics/trending-topics.
 import { ListPostsHomeComponent } from './list-posts/list-posts-home/list-posts-home.component';
 import { ListPostsProfileComponent } from './list-posts/list-posts-profile/list-posts-profile.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { CommentBoxComponent } from './comment-box/comment-box.component';
 import { MentionModule } from 'angular-mentions';
 import { ListPostsTopicsComponent } from './list-posts/list-posts-topics/list-posts-topics.component';
 
@@ -55,6 +56,7 @@ import { ListPostsTopicsComponent } from './list-posts/list-posts-topics/list-po
     ListPostsHomeComponent,
     ListPostsProfileComponent,
     PostDetailComponent,
+    CommentBoxComponent,
     ListPostsTopicsComponent,
   ],
   imports: [

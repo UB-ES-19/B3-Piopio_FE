@@ -145,6 +145,10 @@
     <div class="card-footer">
       <!-- Post statistics -->
       <div class="social-count">
+        <div class="report-block">
+              <i class="mdi " (click)="clickOnReport()" style="cursor: pointer" style="color: red">&#9888;</i>
+        </div>
+
         <div class="likes-block">
           <i class="mdi mdi-heart" (click)="clickOnLike()" style="cursor: pointer" [ngStyle]="{'color': post.liked == 'false' ? 'gray' : '#f75d5d'}"></i>
           <span>{{post.favorited_count}}</span>

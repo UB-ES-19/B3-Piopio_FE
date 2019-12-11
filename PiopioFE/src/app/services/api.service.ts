@@ -16,6 +16,8 @@ export class ApiService {
     return this.httpClient.post<any>(this.postsEndPoint, post, {headers : this.httpHeaders});
   }
 
+ 
+
   getMyPosts(limit: number, offset: number) {
     return this.httpClient.get<any>(`${this.postsEndPoint}me/?limit=${limit}&offset=${offset}`, {headers : this.httpHeaders});
   }
@@ -55,6 +57,8 @@ export class ApiService {
     return this.httpClient.post<any>(`${this.usersEndPoint}follow/`, {"username": username},{headers : this.httpHeaders});
   }
 
+ 
+
   unfollowUser(username: string) {
     return this.httpClient.post<any>(`${this.usersEndPoint}unfollow/`, {"username": username},{headers : this.httpHeaders});
   }
@@ -68,6 +72,14 @@ export class ApiService {
 
   clickOnLike(postId: number) {
     return this.httpClient.post<any>(`${this.usersEndPoint}like/${postId}/`, {headers : this.httpHeaders});
+  }
+
+  clickOnReport(postId:number){
+    return this.httpClient.post<any>(`${this.usersEndPoint}report/${postId}`,{headers:this.httpHeaders});
+  }
+
+  reply(post:any, postId:number){
+    return this.httpClient.post<any>(`${this.postsEndPoint}${postId}/reply`,{headers:this.httpHeaders});
   }
 
   clickOnRT(postId: number) {

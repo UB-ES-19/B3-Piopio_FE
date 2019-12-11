@@ -79,4 +79,15 @@ export class PostCardComponent implements OnInit {
         console.log(error);
       });
   }
+
+  clickOnReport(){
+    this.apiService.clickOnReport(this.post.id).subscribe(
+      value=>{
+        console.log(value)
+      },error =>{
+        console.log(error);
+      });
+  }
+
+
 }
