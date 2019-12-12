@@ -20,3 +20,10 @@
 .retweet-block > span{
   margin-bottom: 2px;
 }
+.report-block {
+  margin-right: 10px;
+}
+
+.report-block > i{
+  font-size: 1.3em;
+}

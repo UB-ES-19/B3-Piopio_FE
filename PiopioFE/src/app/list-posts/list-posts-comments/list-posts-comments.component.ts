@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {ListPostsComponent} from '../list-posts.component';
 import {ApiService} from '../../services/api.service';
 import {ActivatedRoute} from '@angular/router';
@@ -8,23 +8,28 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './../list-posts.component.html',
   styleUrls: ['./../list-posts.component.css'],
 })
-export class ListPostsCommentsComponent extends ListPostsComponent implements OnInit {
+export class ListPostsCommentsComponent extends ListPostsComponent implements OnInit, OnChanges {
 
-  postId: string;
+  currentUser: any;
+  @Input()
+  comments: any[] = [];
 
-  constructor(protected apiService: ApiService, private route: ActivatedRoute) {
+  constructor(protected apiService: ApiService) {
     super(apiService);
   }
 
   ngOnInit() {
-    this.postId = this.route.snapshot.paramMap.get('post_id');
-    this.apiService.getPostDetail(this.postId).subscribe(value => {
-      this.posts = value.details.childs;
-    }, error => {
+    this.apiService.getMyProfile().subscribe(me => {
+      this.currentUser = me;
     });
+    this.posts = this.comments;
   }
 
   onScroll() {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const currentItem: SimpleChange = changes.comments;
+    this.posts = currentItem.currentValue;
+  }
 }

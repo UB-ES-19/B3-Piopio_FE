@@ -1,14 +1,19 @@
-import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit, SimpleChange,
+  SimpleChanges} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {generateAnalysis} from '@angular/compiler-cli/src/ngtsc/indexer/src/transform';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
   styleUrls: ['./post-card.component.css']
 })
-export class PostCardComponent implements OnInit {
+export class PostCardComponent implements OnInit, OnChanges  {
 
   @Input()
   post: any;
@@ -16,12 +21,27 @@ export class PostCardComponent implements OnInit {
   focus = false;
   mentions: string[] = [];
   newContent: string[] = [];
+  @Input()
+  currentUser: any;
+  reported: boolean = false;
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router) {
+  }
 
   ngOnInit() {
+    this.renderPostData();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const currentItem: SimpleChange = changes.post;
+    if (currentItem) {
+      this.post = currentItem.currentValue;
+    }
+  }
+
+  renderPostData() {
     if (this.post) {
-      if(this.post.mentions) {
+      if (this.post.mentions) {
         if (this.post.mentions.length > 0) {
           this.post.mentions.forEach(mention => {
             this.mentions.push('@' + mention.username);
@@ -39,16 +59,12 @@ export class PostCardComponent implements OnInit {
           }
         });
         this.post.content = this.newContent.join(' ');
-      
       }
     }
   }
 
   goToDetail() {
-    this.router.navigate(['/post/', this.post.id])
-      .then(() => {
-        window.location.reload();
-      });
+    this.router.navigate(['/post/', this.post.id]);
   }
 
   clickOnRetweet() {
@@ -81,11 +97,11 @@ export class PostCardComponent implements OnInit {
       });
   }
 
-  clickOnReport(){
+  clickOnReport() {
     this.apiService.clickOnReport(this.post.id).subscribe(
-      value=>{
-        console.log(value)
-      },error =>{
+      value => {
+        this.reported = true;
+      }, error => {
         console.log(error);
       });
   }

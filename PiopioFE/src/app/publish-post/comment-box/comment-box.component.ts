@@ -16,6 +16,9 @@ export class CommentBoxComponent extends PublishPostComponent implements OnInit 
 
   constructor(protected apiService: ApiService,  protected formBuilder: FormBuilder, private route: ActivatedRoute) {
     super(apiService, formBuilder);
+    route.params.subscribe(val => {
+      this.postId = this.route.snapshot.paramMap.get('post_id');
+    });
   }
 
   ngOnInit() {

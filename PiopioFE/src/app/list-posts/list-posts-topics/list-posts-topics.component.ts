@@ -10,15 +10,24 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ListPostsTopicsComponent extends ListPostsComponent implements OnInit {
 
+  currentUser: any;
   topic: string;
 
   constructor(protected apiService: ApiService, protected route: ActivatedRoute) {
     super(apiService);
+    route.params.subscribe(val => {
+      this.topic = this.route.snapshot.paramMap.get('topic');
+      this.posts = [];
+      this.getPosts();
+    });
   }
 
   ngOnInit() {
     this.topic = this.route.snapshot.paramMap.get('topic');
-    this.getPosts();
+    this.apiService.getMyProfile().subscribe(me => {
+      this.currentUser = me;
+      this.getPosts();
+    });
   }
 
   getPosts() {

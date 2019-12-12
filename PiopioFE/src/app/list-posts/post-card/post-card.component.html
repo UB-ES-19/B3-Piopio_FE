@@ -1,4 +1,4 @@
-<div class="card is-post" style="margin: 0;" >
+<div class="card is-post" style="margin: 0;" [ngStyle]="{ 'background-color': reported ? '#ebebeb' : 'white'}">
   <!-- Main wrap -->
   <div class="content-wrap">
     <!-- Post header -->
@@ -18,7 +18,10 @@
     <!-- /Post header -->
 
     <!-- Post body -->
-    <div class="card-body">
+    <div class="card-body" *ngIf="reported">
+      <h2>You reported this post. You will no longer be able to see this post on your timeline.</h2>
+    </div>
+    <div class="card-body" *ngIf="!reported">
       <!-- Post body text -->
       <div class="post-text">
         <h4 class="card-title mt-3"></h4>
@@ -142,11 +145,20 @@
     <!-- /Post body -->
 
     <!-- Post footer -->
-    <div class="card-footer">
+    <div class="card-footer" *ngIf="!reported">
       <!-- Post statistics -->
       <div class="social-count">
-        <div class="report-block">
-              <i class="mdi " (click)="clickOnReport()" style="cursor: pointer" style="color: red">&#9888;</i>
+        <div class="report-block" *ngIf="currentUser?.id != post.user.id">
+          <swal
+              #reportSwal
+              title=""
+              text="Are you sure you want to report this post? This cannot be undone"
+              icon="question"
+              [showCancelButton]="true"
+              [focusCancel]="true"
+              (confirm)="clickOnReport()">
+          </swal>
+          <i class="mdi mdi-alert-octagon" [swal]="reportSwal" style="cursor: pointer; color: #f74444;"></i>
         </div>
 
         <div class="likes-block">
