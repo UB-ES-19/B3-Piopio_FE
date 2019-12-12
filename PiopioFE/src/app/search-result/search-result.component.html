@@ -10,21 +10,14 @@
       <h3 *ngIf="users.length==0"><b>No users</b></h3>
       <div *ngFor="let user of users" class="card-flex friend-card">
         <div class="img-container">
-          <img class="avatar" src="https://via.placeholder.com/300x300" data-demo-src="assets/images/avatars/dan.jpg"
-              alt="">
-          <img class="country" src="" alt="">
+          <img *ngIf="!user.profile.avatar_url" class="avatar" src="assets/images/noProfilePicture.png" alt="">
+          <cl-image *ngIf="user.profile.avatar_url" public-id="{{user.profile.avatar_url}}" class="avatar" style="min-height: 80px;"></cl-image>
         </div>
         <div class="friend-info">
           <h3><a (click)="goToProfile(user.username)">{{ user.username }}</a></h3>
           <p>{{ user.profile.first_name }} {{ user.profile.last_name }}</p>
         </div>
         <div class="friend-stats">
-          <div class="stat-block">
-            <label>Posts</label>
-            <div class="stat-number">
-              ?
-            </div>
-          </div>
           <div class="stat-block">
             <label>Followers</label>
             <div class="stat-number">

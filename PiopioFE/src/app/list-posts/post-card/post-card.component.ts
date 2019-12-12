@@ -39,6 +39,7 @@ export class PostCardComponent implements OnInit {
           }
         });
         this.post.content = this.newContent.join(' ');
+      
       }
     }
   }

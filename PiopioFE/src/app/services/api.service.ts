@@ -75,7 +75,7 @@ export class ApiService {
   }
 
   clickOnReport(postId: string) {
-    return this.httpClient.post<any>(`${this.usersEndPoint}report/${postId}`,{headers: this.httpHeaders});
+    return this.httpClient.post<any>(`${this.usersEndPoint}report/${postId}/`,{headers: this.httpHeaders});
   }
 
   reply(post: any, postId: string) {
