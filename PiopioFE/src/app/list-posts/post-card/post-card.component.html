@@ -10,7 +10,7 @@
           <img *ngIf="post.user.profile.avatar_url != ''" src="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.user.profile.avatar_url}}" data-user-popover="1" alt="">
         </div>
         <div class="user-info">
-          <a routerLink="/{{post.user.username}}" > {{ post.user.username }} </a>
+          <a routerLink="/{{post.user.username}}" > {{ post.user.profile.first_name }} {{ post.user.profile.last_name }} <span class="username-mention"> @{{ post.user.username }}</span> </a>
           <span class="time">{{ post.created_at | date: "dd/MM/yyyy hh:mm"}}</span>
         </div>
       </div>
@@ -28,33 +28,45 @@
         <p [innerHTML]="post.content" [ngStyle]="{ 'font-size' : focus ? '20px': '' , 'color' : focus ? 'black': ''}"></p>
       </div>
 
-      <div class="videos-wrapper is-home" *ngIf="post.type == 'video' && post.media?.length == 1">
-        <div class="home-content" style="padding: 0">
-          <div class="collections-wrap is-active" style="padding: 0">
-            <div class="collection">
-              <div class="video-collection" style="padding: 0">
-                <a class="episode" data-fancybox href="#video-{{post.id}}" style="width: 100%;">
-                  <div class="episode-thumbnail">
-                    <div class="episode-overlay"></div>
-                    <div class="play-button">
-                      <i data-feather="play-circle"></i>
-                    </div>
-                    <img style="width: 100%" src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ post.media[0].url }}.jpg" alt="">
-                  </div>
-                </a>
-                <!--                  <cl-video public-id="{{ post.media[0].url }}" id="video-{{post.id}}" style="display:none;" controls>-->
+      <figure class="snip1545" *ngIf="post.type == 'video' && post.media?.length == 1">
+        <img src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ post.media[0].url }}.jpg" alt="sample42" />
+        <figcaption>
+          <div><i class="mdi mdi-play"></i></div>
+        </figcaption>
+        <a data-fancybox href="#video-{{post.id}}"></a>
+        <video width="1080" height="720" controls id="video-{{post.id}}" style="display:none;">
+          <source src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ post.media[0].url }}.mp4" type="video/mp4">
+          Your browser doesn't support HTML5 video tag.
+        </video>
+      </figure>
 
-                <!--                  </cl-video>-->
-                <video width="1080" height="720" controls id="video-{{post.id}}" style="display:none;">
-                  <source src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ post.media[0].url }}.mp4" type="video/mp4">
-                  Your browser doesn't support HTML5 video tag.
-                </video>
-              </div>
-            </div>
-          </div>
-        </div>
+<!--      <div class="videos-wrapper is-home" *ngIf="post.type == 'video' && post.media?.length == 1">-->
+<!--        <div class="home-content" style="padding: 0">-->
+<!--          <div class="collections-wrap is-active" style="padding: 0">-->
+<!--            <div class="collection">-->
+<!--              <div class="video-collection" style="padding: 0">-->
+<!--                <a class="episode" data-fancybox href="#video-{{post.id}}" style="width: 100%;">-->
+<!--                  <div class="episode-thumbnail">-->
+<!--                    <div class="episode-overlay"></div>-->
+<!--                    <div class="play-button">-->
+<!--                      <i data-feather="play-circle"></i>-->
+<!--                    </div>-->
+<!--                    <img style="width: 100%" src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ post.media[0].url }}.jpg" alt="">-->
+<!--                  </div>-->
+<!--                </a>-->
+<!--                &lt;!&ndash;                  <cl-video public-id="{{ post.media[0].url }}" id="video-{{post.id}}" style="display:none;" controls>&ndash;&gt;-->
 
-      </div>
+<!--                &lt;!&ndash;                  </cl-video>&ndash;&gt;-->
+<!--                <video width="1080" height="720" controls id="video-{{post.id}}" style="display:none;">-->
+<!--                  <source src="http://res.cloudinary.com/dt5t5tmbw/video/upload/{{ post.media[0].url }}.mp4" type="video/mp4">-->
+<!--                  Your browser doesn't support HTML5 video tag.-->
+<!--                </video>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
 
       <div class="post-image" *ngIf="post.type == 'image' && post.media?.length == 1">
         <a [attr.data-fancybox]="'gallery-'+post.id" href="http://res.cloudinary.com/dt5t5tmbw/image/upload/{{post.media[0].url}}">
@@ -148,11 +160,14 @@
     <div class="card-footer" *ngIf="!reported">
       <!-- Post statistics -->
       <div class="social-count">
-        <div class="report-block" *ngIf="currentUser?.id != post.user.id">
+        <div>
+          <i class="mdi mdi-reply" style="cursor: pointer; color: #626262; font-size: 1.3em;" (click)="goToDetail()"></i>
+        </div>
+        <div class="report-block" *ngIf="currentUser?.id != post.user.id" [ngStyle]="{'margin-left' : currentUser?.id != post.user.id ? 'auto' : ''}">
           <swal
               #reportSwal
               title=""
-              text="Are you sure you want to report this post? This cannot be undone"
+              text="Are you sure you want to report this post? This cannot be undone 😱"
               icon="question"
               [showCancelButton]="true"
               [focusCancel]="true"
@@ -161,7 +176,7 @@
           <i class="mdi mdi-alert-octagon" [swal]="reportSwal" style="cursor: pointer; color: #f74444;"></i>
         </div>
 
-        <div class="likes-block">
+        <div class="likes-block" [ngStyle]="{'margin-left' : currentUser?.id != post.user.id ? '' : 'auto'}">
           <i class="mdi mdi-heart" (click)="clickOnLike()" style="cursor: pointer" [ngStyle]="{'color': post.liked == 'false' ? 'gray' : '#f75d5d'}"></i>
           <span>{{post.favorited_count}}</span>
         </div>

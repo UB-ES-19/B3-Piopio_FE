@@ -11,7 +11,7 @@
             <div *ngFor="let topic of topics" >
                 <!-- Card body text -->
                 <div class="post-text" style="margin-bottom: 5px;">
-                    <a [routerLink]="['/trending', topic.hashtag]" routerLinkActive="active"><h4 class="card-title mt-3" style="font-weight: bold; color: #e74c3c;">{{topic.hashtag}}</h4></a>
+                    <a [routerLink]="['/trending', topic.hashtag]" routerLinkActive="active"><h4 class="card-title mt-3" style="font-weight: bold; color: #1e9aff;">#{{topic.hashtag}}</h4></a>
                     <p>{{topic.count}} PioPios</p>
                 </div>
             </div>
@@ -20,4 +20,3 @@
     <!-- /Main wrap -->
     </div>
 </div>
-      

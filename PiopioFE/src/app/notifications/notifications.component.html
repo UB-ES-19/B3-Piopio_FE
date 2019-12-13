@@ -1,8 +1,17 @@
-<div *ngIf="notifications">
+<div *ngIf="notifications?.length > 0 ; else noNotifications">
   <div *ngFor="let notification of notifications.results" >
     <app-notification [notification]="notification"></app-notification>
   </div>
 </div>
+<ng-template #noNotifications>
+  <div class="card">
+    <div class="card-content">
+      <div class="content">
+        <b>You have no notifications 😔</b>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 
 

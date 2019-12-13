@@ -1,22 +1,24 @@
 import {
-  Component,
+  AfterViewInit,
+  Component, ElementRef,
   Input,
   OnChanges,
   OnInit, SimpleChange,
-  SimpleChanges} from '@angular/core';
+  SimpleChanges
+} from '@angular/core';
 import {ApiService} from '../../services/api.service';
-import {generateAnalysis} from '@angular/compiler-cli/src/ngtsc/indexer/src/transform';
 import {ActivatedRoute, Router} from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
   styleUrls: ['./post-card.component.css']
 })
-export class PostCardComponent implements OnInit, OnChanges  {
+export class PostCardComponent implements OnInit, OnChanges, AfterViewInit  {
 
   @Input()
-  post: any;
+  post: any = null;
   @Input()
   focus = false;
   mentions: string[] = [];
@@ -25,11 +27,13 @@ export class PostCardComponent implements OnInit, OnChanges  {
   currentUser: any;
   reported: boolean = false;
 
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(private apiService: ApiService, private router: Router, private el: ElementRef) {
   }
 
   ngOnInit() {
-    this.renderPostData();
+    setTimeout(() => {
+      this.renderPostData();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -37,6 +41,17 @@ export class PostCardComponent implements OnInit, OnChanges  {
     if (currentItem) {
       this.post = currentItem.currentValue;
     }
+  }
+
+  ngAfterViewInit() {
+    $(this.el.nativeElement).on('click', 'a.user-mention', (e) => {
+      e.preventDefault();
+      this.router.navigate([e.target.pathname]);
+    });
+    $(this.el.nativeElement).on('click', 'a.hashtag-url', (e) => {
+      e.preventDefault();
+      this.router.navigate([e.target.pathname]);
+    });
   }
 
   renderPostData() {
@@ -49,13 +64,17 @@ export class PostCardComponent implements OnInit, OnChanges  {
         }
         const textArr = this.post.content.split(' ');
         textArr.forEach(text => {
-          const match = this.mentions.filter((item) => {
-            return item === text;
+          const match = this.mentions.filter((mention) => {
+            return mention === text;
           });
           if (match.length > 0) {
-            this.newContent.push(`<a href="/${text.substr(1, text.length)}">${text}</a>`);
+            this.newContent.push(`<a class="user-mention" href="/${text.substr(1, text.length)}">${text}</a>`);
           } else {
-            this.newContent.push(text);
+            if (text.includes('#')) {
+              this.newContent.push(text.replace( /(^|\s)(#[a-z\d-]+)/ig, `<a class="hashtag-url" href="/trending/${text.substr(1, text.length)}">${text}</a>`));
+            } else {
+              this.newContent.push(text);
+            }
           }
         });
         this.post.content = this.newContent.join(' ');

@@ -35,6 +35,7 @@ import { MentionModule } from 'angular-mentions';
 import { ListPostsTopicsComponent } from './list-posts/list-posts-topics/list-posts-topics.component';
 import { ListPostsCommentsComponent } from './list-posts/list-posts-comments/list-posts-comments.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [

@@ -16,9 +16,11 @@ export class ListPostsTopicsComponent extends ListPostsComponent implements OnIn
   constructor(protected apiService: ApiService, protected route: ActivatedRoute) {
     super(apiService);
     route.params.subscribe(val => {
-      this.topic = this.route.snapshot.paramMap.get('topic');
-      this.posts = [];
-      this.getPosts();
+      if(this.posts.length > 0) {
+        this.topic = this.route.snapshot.paramMap.get('topic');
+        this.posts = [];
+        this.getPosts();
+      }
     });
   }
 

@@ -96,6 +96,13 @@
           <app-list-posts-home #listPostsComponent class="w-100"></app-list-posts-home>
         </div>
         <div *ngIf="route.routeConfig.path == 'trending/:topic'">
+          <div class="card">
+            <div class="card-content">
+              <div class="content">
+                Trending topic <b>#{{ route.snapshot.paramMap.get('topic') }}</b>
+              </div>
+            </div>
+          </div>
           <app-list-posts-topics></app-list-posts-topics>
         </div>
         <div *ngIf="router.url == '/notifications'">

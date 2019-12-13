@@ -2,7 +2,7 @@
 <div class="container" id="container">
   <div class="form-container">
     <form [formGroup]="registerForm" (ngSubmit)="signUp(registerForm)">
-      <img src="/assets/images/piopiologo.png">
+      <img src="/assets/images/piopiologo.png" width="100">
 
       <h1>Create your account</h1>
 
@@ -58,7 +58,7 @@
           <small *ngIf="registerForm.get('profile.last_name').hasError('maxlength')">Max of 20 characters</small>
         </div>
       </div>
-      <button [disabled]="registerForm.invalid" type="submit" class="btn btn-danger">
+      <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">
         Sign Up
       </button>
     </form>

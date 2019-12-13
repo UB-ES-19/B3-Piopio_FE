@@ -33,9 +33,10 @@
 }
 
 button {
+  cursor: pointer;
   border-radius: 20px;
-  border: 1px solid #E74C3C;
-  background: #E74C3C;
+  border: 1px solid #1387ff;
+  background: #1e9aff;
   color: #fff;
   font-size: 12px;
   font-weight: bold;
@@ -47,6 +48,12 @@ button {
 
 button:active {
   transform: scale(0.95);
+}
+
+button:disabled {
+  border: 1px solid #51b8ff;
+  background: #63b7f7;
+  cursor: default;
 }
 
 button:focus{

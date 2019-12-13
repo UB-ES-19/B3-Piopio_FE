@@ -19,11 +19,13 @@ export class PostDetailComponent implements OnInit {
 
   constructor(private apiService: ApiService, protected route: ActivatedRoute, private location: Location) {
     route.params.subscribe(val => {
-      this.postId = this.route.snapshot.paramMap.get('post_id');
-      this.parent = null;
-      this.post = null;
-      this.comments = [];
-      this.getDetails();
+      if (this.post) {
+        this.postId = this.route.snapshot.paramMap.get('post_id');
+        this.parent = null;
+        this.post = null;
+        this.comments = [];
+        this.getDetails();
+      }
     });
   }
 
