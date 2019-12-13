@@ -63,7 +63,7 @@ export class ApiService {
   }
 
   uploadMedia(type: string, fileContents: any) {
-    return this.httpClient.post(`http://api.cloudinary.com/v1_1/dt5t5tmbw/${type}/upload`, {
+    return this.httpClient.post(`https://api.cloudinary.com/v1_1/dt5t5tmbw/${type}/upload`, {
       file: fileContents,
       upload_preset: 'ywmfaral'
     }, );
@@ -95,7 +95,7 @@ export class ApiService {
   }
 
   deleteMedia(publicId: string, deleteToken: string) {
-    return this.httpClient.post(`http://api.cloudinary.com/v1_1/dt5t5tmbw/delete_by_token`, { public_id: publicId, token: deleteToken });
+    return this.httpClient.post(`https://api.cloudinary.com/v1_1/dt5t5tmbw/delete_by_token`, { public_id: publicId, token: deleteToken });
   }
 
   editUserProfile(id: number, data: any) {
@@ -103,11 +103,11 @@ export class ApiService {
   }
 
   getNotifications() {
-    return this.httpClient.get('http://localhost:8000/api/users/notifications/', {headers: this.httpHeaders});
+    return this.httpClient.get('https://piopiobackend.herokuapp.com/api/users/notifications/', {headers: this.httpHeaders});
   }
 
   readNotification(id: number) {
-    return this.httpClient.post('http://localhost:8000/api/notifications/notified/', {post: id}, {headers: this.httpHeaders});
+    return this.httpClient.post('https://piopiobackend.herokuapp.com/api/notifications/notified/', {post: id}, {headers: this.httpHeaders});
   }
 
   getPostDetail(id: string) {
