@@ -10,8 +10,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 
-  private usersEndPoint = 'http://localhost:8000/api/users/';
-  private tokensEndPoint = 'http://localhost:8000/api/token/';
+  private usersEndPoint = 'https://piopiobackend.herokuapp.com/api/users/';
+  private tokensEndPoint = 'https://piopiobackend.herokuapp.com/api/token/';
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   private jwtHelper = new JwtHelperService();
 

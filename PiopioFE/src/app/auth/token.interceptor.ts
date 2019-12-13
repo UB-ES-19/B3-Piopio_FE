@@ -15,7 +15,6 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (this.authService.getJwtToken() && !request.url.includes('cloudinary')) {
-      console.log(request);
       request = this.addToken(request, this.authService.getJwtToken());
 
       // @ts-ignore
@@ -46,7 +45,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
       return this.authService.refreshToken().pipe(
         switchMap((token: {access: string}) => {
-          console.log('SwitchMap: ' + token);
           this.isRefreshing = false;
           this.refreshTokenSubject.next(token.access);
           return next.handle(this.addToken(request, token.access));
@@ -58,7 +56,6 @@ export class TokenInterceptor implements HttpInterceptor {
         filter(token => token != null),
         take(1),
         switchMap(jwt => {
-          console.log(jwt);
           return next.handle(this.addToken(request, jwt));
         })
       );

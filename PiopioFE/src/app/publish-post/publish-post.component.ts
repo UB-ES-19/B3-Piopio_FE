@@ -82,7 +82,6 @@ export class PublishPostComponent implements OnInit {
       this.readFile(media).then(fileContents => {
         this.apiService.uploadMedia(this.type, fileContents).subscribe(
           (response: any) => {
-            console.log(response);
             this.showMediaPreview(this.type, response.url, response.public_id, response.delete_token);
           }, error => {
             console.log(error);
@@ -122,7 +121,6 @@ export class PublishPostComponent implements OnInit {
     if (this.previews.length > 0) {
       this.apiService.deleteMedia(preview.public_id, preview.delete_token).subscribe(
         value => {
-          console.log(value);
           this.previews.splice(this.previews.indexOf(preview), 1);
           if (this.previews.length === 0) {
             $('.compose-option').show();
