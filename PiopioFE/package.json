@@ -22,7 +22,7 @@
     "@auth0/angular-jwt": "^3.0.0",
     "@fengyuanchen/datepicker": "^0.6.5",
     "feather-icons": "^4.24.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-infinite-scroll": "^8.0.0",
     "ngx-dropzone": "2.1.2",
     "package.json": "^2.0.1",
